@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cOPJoTzEkonPx5vXBG84kcRHoDaEygcAiird2OWBPxiAkv95gB4NXQfldkfN61IVfeHTfs7Px/x5TOfBwTHfxw==",
+  "dgSpecHash": "JfL1wgj2ng02ZJvCmguBW6KMHZhFJxIj7yLX4/Aa9ZtspBdNCNFaU03wuYXMvVFVokmGL28UxGGWjHKSenYk5A==",
   "success": true,
   "projectFilePath": "C:\\Users\\vinic\\OneDrive\\Documentos\\Programacao web\\SergipeVac\\SergipeVacAPI\\SergipeVac\\SergipeVacAPI.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,8 @@
     "C:\\Users\\vinic\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\vinic\\.nuget\\packages\\npgsql\\7.0.4\\npgsql.7.0.4.nupkg.sha512",
+    "C:\\Users\\vinic\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.4\\npgsql.entityframeworkcore.postgresql.7.0.4.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
