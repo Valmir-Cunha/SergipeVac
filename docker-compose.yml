@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+
+  backend:
+    image: backend-vac
+    networks:
+      redelocal:
+        ipv4_address: 172.30.0.5
+      
+    
+  frontend:
+    build: 
+      context: ./sergipe_vac
+      dockerfile: Dockerfile
+    ports:
+    - "3000:80"
+    networks:
+      - redelocal
+
+networks:
+  redelocal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+
