@@ -2,11 +2,11 @@
 
 namespace SergipeVac.Model
 {
-    [Table("documentovacinacao")]
+    [Table("documentovacinacaoaracaju")]
     public class DocumentoImportadoCSV
     {
         [Column("document_id")]
-        public string DocumentId { get; set; }
+        public string? DocumentId { get; set; }
 
         [Column("paciente_id")]
         public string PacienteId { get; set; }
