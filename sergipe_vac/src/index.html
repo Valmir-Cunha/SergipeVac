@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    .bar {
+      fill: steelblue;
+    }
+  </style>
+  <title>Gráfico de Barras</title>
+</head>
+<body>
+  <svg id="chart" width="400" height="300"></svg>
+
+  <script>
+    const data = {
+      'A': 10,
+      'B': 20,
+      'C': 15,
+      'D': 5
+    };
+
+    const svg = d3.select('#chart');
+
+    const width = +svg.attr('width');
+    const height = +svg.attr('height');
+
+    const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    const xScale = d3.scaleBand()
+      .domain(Object.keys(data))
+      .range([0, innerWidth])
+      .padding(0.1);
+
+    const yScale = d3.scaleLinear()
+      .domain([0, d3.max(Object.values(data))])
+      .range([innerHeight, 0]);
+
+    const g = svg.append('g')
+      .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    g.selectAll('.bar')
+      .data(Object.entries(data))
+      .enter().append('rect')
+      .attr('class', 'bar')
+      .attr('x', d => xScale(d[0]))
+      .attr('y', d => yScale(d[1]))
+      .attr('width', xScale.bandwidth())
+      .attr('height', d => innerHeight - yScale(d[1]));
+
+    g.append('g')
+      .attr('transform', `translate(0,${innerHeight})`)
+      .call(d3.axisBottom(xScale));
+
+    g.append('g')
+      .call(d3.axisLeft(yScale));
+  </script>
+</body>
+</html>
