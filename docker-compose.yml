@@ -9,9 +9,11 @@ services:
       
     
   frontend:
-    image: frontend-vac
+    build: 
+      context: ./sergipe_vac
+      dockerfile: Dockerfile
     ports:
-    - "3000:3000"
+    - "3000:80"
     networks:
       - redelocal
 
