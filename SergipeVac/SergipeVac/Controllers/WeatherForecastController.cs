@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SergipeVac.Conversores;
 
 namespace SergipeVac.Controllers
 {
@@ -12,22 +13,18 @@ namespace SergipeVac.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ConversorDados _conversorDados;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ConversorDados conversorDados)
         {
             _logger = logger;
+            _conversorDados = conversorDados;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public void Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            _conversorDados.ConverterCSVDocumentosVacinacao();
         }
     }
 }
