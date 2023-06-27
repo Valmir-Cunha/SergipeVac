@@ -1,0 +1,42 @@
+body {
+    text-align: center;
+    padding-top: 100px;
+    background: whitesmoke;
+    color: #0b0147;
+    font-family: Segoe Ui Light;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+p{
+    font-size: 25px;
+    margin-bottom: 50px;
+}
+
+.basic-buttom {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #0b0147;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.basic-buttom:hover {
+    background-color: #5e6277;
+    color: white;
+    text-decoration: none;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
