@@ -3,22 +3,23 @@ services:
 
   backend:
     image: backend-sergipevac
+    container_name: backend-container
     networks:
       redelocal:
         ipv4_address: 172.30.0.5
     ports:
-      - "8000:80"
-      
+      - "10000:80"
     
   frontend:
     build: 
       context: ./sergipe_vac
       dockerfile: Dockerfile
+    container_name: frontend-container
     ports:
     - "3000:80"
     networks:
       - redelocal
-
+      
 networks:
   redelocal:
     driver: bridge

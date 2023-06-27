@@ -17,6 +17,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 var strBuilder = new NpgsqlConnectionStringBuilder()
 {
     Port = 5432,
@@ -26,9 +28,9 @@ var strBuilder = new NpgsqlConnectionStringBuilder()
     Database = "sergipevac"
 };
 
+
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<Contexto>(options =>
 options.UseNpgsql(strBuilder.ConnectionString));
-
 
 var app = builder.Build();
 
@@ -38,7 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

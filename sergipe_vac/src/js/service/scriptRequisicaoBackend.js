@@ -2,8 +2,8 @@ import {fetchFromScratch} from './fetchFromScratch.js'
 
 export class scriptRequisicaoBackend {
     constructor() {
-        this.ip = "172.30.0.5"
-        this.port ="53360"
+        this.ip = "localhost"
+        this.port ="10000"
         
         this.fetchBack = new fetchFromScratch(this.ip,this.port)
     }
