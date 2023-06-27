@@ -20,10 +20,10 @@ builder.Services.AddSwaggerGen();
 var strBuilder = new NpgsqlConnectionStringBuilder()
 {
     Port = 5432,
-    Host = "localhost",
-    Username = "Vinicius",
-    Password = "vinicius11",
-    Database = "SergipeVac"
+    Host = "database-1.cazvzdkc1qau.us-east-1.rds.amazonaws.com",
+    Username = "postgres",
+    Password = "tZHpqOnI4rUJS2NzeIS4",
+    Database = "sergipevac"
 };
 
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<Contexto>(options =>

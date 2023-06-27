@@ -2,10 +2,12 @@ version: '3.3'
 services:
 
   backend:
-    image: backend-vac
+    image: backend-sergipevac
     networks:
       redelocal:
         ipv4_address: 172.30.0.5
+    ports:
+      - "8000:80"
       
     
   frontend:
