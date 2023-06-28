@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Estatísticas</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/estatisticas.css">
+    <style>
+        #chart {
+            width: 75vw;
+            height: 80vh;
+        }
+
+        #grafico {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #dropdown-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .dropdown-menu {
+            position: static;
+            transform: translate(-50%, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="ms-auto">
+            <button class="btn btn-voltar mr-5" onclick="window.location.href='../index.html';">Voltar</button>
+        </div>
+        <a class="navbar-brand" href="#">Vacinação da COVID-19 em Aracaju/SE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row align-vertical">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total de Vacinados</h5>
+                        <p class="card-text">3.000.000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total de Estabelecimentos</h5>
+                        <p class="card-text">3.000.000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total de Estrangeiros</h5>
+                        <p class="card-text">3.000.000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Fabricante com mais doses</h5>
+                        <p class="card-text">3.000.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="row align-vertical">
+            <div class="col-md-3">
+                <div class="dropdown" style="position: relative;">
+                    <button class="btn basic-buttom dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Principais Perguntas
+                    </button>
+                    <ul class="dropdown-menu centered" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="estatisticas.html">Quantos vacinados pertencem a cada grupo étnico/racial registrado no banco de dados?</a></li>
+                        <li><a class="dropdown-item" href="estabelecimento.html">Quais são os estabelecimentos que realizaram a vacinação em Aracaju?</a></li>
+                        <li><a class="dropdown-item active" href="grupo_de_atendimento.html">Quantos vacinados pertencem a cada grupo de atendimento registrado no banco de dados?</a></li>
+                        <li><a class="dropdown-item" href="categoria.html">Quais são as categorias mais frequentes entre os vacinados?</a></li>
+                        <li><a class="dropdown-item" href="sexo_biologico.html">Quais são as quantidades de vacinas que foram aplicados por sexo biológico?</a></li>
+                        <li><a class="dropdown-item" href="tipo-dose.html">Quantos vacinados receberam cada tipo de dose da vacina?</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h2>Quantos vacinados pertencem a cada grupo de atendimento registrado no banco de dados?</h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="grafico">
+        <svg id="chart"></svg>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Erick, Gustavo e Vinicius. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // Adiciona classe "active" à opção selecionada na lista
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function () {
+                dropdownItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                this.classList.add('active');
+            });
+        });
+
+        // Dados de exemplo
+        const data = [
+            { label: "A", value: 10 },
+            { label: "B", value: 20 },
+            { label: "C", value: 15 },
+            { label: "D", value: 25 },
+            { label: "E", value: 18 }
+        ];
+
+        // Configurações do gráfico
+        const width = window.innerWidth * 0.75;
+        const height = window.innerHeight * 0.5;
+
+        // Criação do SVG
+        const svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        // Escalas
+        const xScale = d3.scaleBand()
+            .domain(data.map(d => d.label))
+            .range([0, width])
+            .padding(0.2);
+
+        const yScale = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d.value)])
+            .range([height, 0]);
+
+        // Criação das barras
+        svg.selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", d => xScale(d.label))
+            .attr("y", d => yScale(d.value))
+            .attr("width", xScale.bandwidth())
+            .attr("height", d => height - yScale(d.value))
+            .attr("fill", "steelblue");
+
+        // Eixos
+        const xAxis = d3.axisBottom(xScale);
+        const yAxis = d3.axisLeft(yScale);
+
+        svg.append("g")
+            .attr("form", `translate(0, ${height})`)
+            .call(xAxis);
+
+        svg.append("g")
+            .call(yAxis);
+    </script>
+    
+    <script type="module"  src="../js/components/graficoDebarras.js"></script>
+
+</body>
+
+</html>
