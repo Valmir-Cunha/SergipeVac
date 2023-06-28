@@ -94,7 +94,7 @@
                         <li><a class="dropdown-item" href="estabelecimento.html">Quais são os estabelecimentos que realizaram a vacinação em Aracaju?</a></li>
                         <li><a class="dropdown-item" href="grupo_de_atendimento.html">Quantos vacinados pertencem a cada grupo de atendimento registrado no banco de dados?</a></li>
                         <li><a class="dropdown-item" href="categoria.html">Quais são as categorias mais frequentes entre os vacinados?</a></li>
-                        <li><a class="dropdown-item" href="sexo_biologico.html">Quais são as quantidades de vacinas que foram aplicados por sexo biológico?</a></li>
+                        <li><a class="dropdown-item" href="sexo_biologico.html">Quais são as quantidades de vacinas que foram aplicadas por sexo biológico?</a></li>
                         <li><a class="dropdown-item active" href="tipo-dose.html">Quantos vacinados receberam cada tipo de dose da vacina?</a></li>
                     </ul>
                 </div>
@@ -105,10 +105,19 @@
         </div>
     </div>
 
-    <div id="grafico">
-        <svg id="chart"></svg>
+    <div class="elementos-graficos">
+        <div id="grafico">
+            <svg id="chart"></svg>
+        </div>
+        <div id="filtro-data" class="filtro-container">
+            <label for="ano-inicial" class="filtro-label">Ano Inicial:</label>
+            <input type="number" id="ano-inicial" class="filtro-input" min="2000" max="2023">
+            <label for="ano-final" class="filtro-label">Ano Final:</label>
+            <input type="number" id="ano-final" class="filtro-input" min="2000" max="2023">
+            <button id="aplicar-filtro" class="filtro-button">Aplicar</button>
+        </div>                  
     </div>
-g
+
     <footer>
         <p>&copy; 2023 Erick, Gustavo e Vinicius. Todos os direitos reservados.</p>
     </footer>

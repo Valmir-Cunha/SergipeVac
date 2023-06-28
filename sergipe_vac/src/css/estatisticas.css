@@ -71,6 +71,11 @@ footer{
 .dropdown-menu {
     background-color: #0b0147;
 }
+
+.active:hover{
+    color: gray;
+}
+
 .dropdown-menu a {
     color: white;
 }
@@ -103,3 +108,37 @@ footer{
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
+
+.elementos-graficos{
+    margin-bottom: 200px;
+}
+
+.filtro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .filtro-label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .filtro-input {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .filtro-button {
+    background-color: #0b0147;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+  
+  .filtro-button:hover {
+    background-color: #5e6277;
+  }
+  
