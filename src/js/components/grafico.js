@@ -7,12 +7,10 @@ import {scriptRequisicaoBackend} from '../service/scriptRequisicaoBackend.js'
 
 const requisicao = new scriptRequisicaoBackend()
 
-let divTitulo ="0";
+let divTitulo =0;
 
+let json
 
-let json = await requisicao.ObterContagemPorEtnia()
-
-console.log(json)
 
 const data = json.map(item => ({
     label: item.pacienteRacaCorValor,
@@ -20,8 +18,7 @@ const data = json.map(item => ({
   }));
   
   
-const graficobarras = new BarChart(data, "chart")
-const graficosetores = new PieChart(data, "chart")
+
 
 for (let i = 1; i < 7; i++) {
     if (document.getElementById(i.toString())!=null) {
@@ -30,7 +27,34 @@ for (let i = 1; i < 7; i++) {
     }
   }
 
+  switch (divTitulo) {
+    case 1:
+        json = await requisicao.ObterContagemPorEtnia()
+      break;
+    case 2:
+        json = await requisicao.ObterContagemPorVacina()
+      break;
+    case 3:
+        json = await requisicao.ObterContagemPorGrupo()
+      break;
+    case 4:
+        json = await requisicao.ObterContagemPorEtnia()
+    break;
+    case 5:
+        json = await requisicao.ObterContagemPorSexo()
+    break;
+    case 6:
+        json = await requisicao.ObterContagemPorDose()
+    break;
+    default:
+        json ="0"
+     break;
+}
 
+
+
+const graficobarras = new BarChart(data, "chart")
+const graficosetores = new PieChart(data, "chart")
 
 switch (divTitulo) {
     case 1:
