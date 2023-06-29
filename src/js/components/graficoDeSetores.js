@@ -1,3 +1,5 @@
+import { substituirElemento } from './pararcarregamento.js'
+
 export class PieChart {
     constructor(data, containerId) {
         this.data = data;
@@ -10,6 +12,7 @@ export class PieChart {
     }
 
     render() {
+        substituirElemento();
         const svg = d3.select(`#${this.containerId}`)
             .append("svg")
             .attr("width", this.width)
