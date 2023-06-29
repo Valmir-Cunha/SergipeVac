@@ -2,13 +2,12 @@ import {fetchFromScratch} from './fetchFromScratch.js'
 
 export class scriptRequisicaoBackend {
     constructor() {
-        this.ip = "192.168.0.150"
-        this.port ="10000"
+        this.url = "https://sergipevacbackend-production.up.railway.app"
         
-        this.fetchBack = new fetchFromScratch(this.ip,this.port)
+        this.fetchBack = new fetchFromScratch(this.url)
     }
     
     async ObterContagemPorEtnia() {
-        return await this.fetchBack.dataReturn("Relatorio")
+        return await this.fetchBack.dataReturn("Relatorio/contagemporetnia")
     }
 }

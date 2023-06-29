@@ -1,6 +1,13 @@
 export class fetchFromScratch {
-  constructor(ip, port) {
-    this.url = `http://${ip}:${port}`;
+  constructor(url) {
+    // if(location.protocol === "http:"){
+    //   this.url = `http://${ip}:${port}`;
+    // }
+    // else{
+    //   port++;
+    //   this.url = `https://${ip}:${port}`;
+    // }
+      this.url = url
   }
 
   async dataReturn(route) {

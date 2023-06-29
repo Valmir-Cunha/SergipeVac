@@ -44,5 +44,16 @@ export class PieChart {
             })
             .attr("text-anchor", "middle")
             .text(d => d.data.value);
+
+        slices.append("text")
+            .attr("transform", d => {
+                const [x, y] = arcGenerator.centroid(d);
+                const midAngle = Math.atan2(y, x);
+                const xOutside = Math.cos(midAngle) * (this.radius + this.labelOffset);
+                const yOutside = Math.sin(midAngle) * (this.radius + this.labelOffset);
+                return `translate(${xOutside}, ${yOutside - 20})`; // Ajuste a posição vertical dos rótulos
+            })
+            .attr("text-anchor", "middle")
+            .text(d => d.data.label);
     }
 }

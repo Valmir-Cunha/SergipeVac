@@ -1,14 +1,22 @@
 version: '3.3'
 services:
 
-  backend:
-    image: backend-sergipevac
-    container_name: backend-container
-    networks:
-      redelocal:
-        ipv4_address: 172.30.0.5
-    ports:
-      - "10000:80"
+  # backend:
+  #   image: backend-sergipevac
+  #   container_name: backend-container
+  #   networks:
+  #     redelocal:
+  #       ipv4_address: 172.30.0.5
+  #   ports:
+  #     - "10000:80"
+  #     - "10001:443"
+  #   # environment:
+  #   #   - ASPNETCORE_ENVIRONMENT=Development
+  #   #   - ASPNETCORE_URLS=https://+:443;http://+:80
+  #   #   - ASPNETCORE_Kestrel__Certificates__Default__Password=12345678
+  #   #   - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+  #   # volumes:
+  #   #   - ~/.aspnet/https:/https:ro
     
   frontend:
     build: 
