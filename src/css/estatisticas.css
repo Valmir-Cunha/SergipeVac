@@ -89,6 +89,7 @@ footer {
 
 .dropdown-menu a:hover {
     background-color: white !important;
+    color: gray !important;
 }
 
 #grafico {

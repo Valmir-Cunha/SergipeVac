@@ -4,11 +4,13 @@ export class PieChart {
     constructor(data, containerId) {
         this.data = data;
         this.containerId = containerId;
-        this.width = window.innerWidth * 0.75;
+        this.width = window.innerWidth;
         this.height = window.innerHeight * 0.5;
         this.radius = Math.min(this.width, this.height) / 2;
         this.colorScale = d3.scaleOrdinal(d3.schemeCategory10);
         this.labelOffset = -50; // Ajuste o valor de acordo com a preferência
+        
+        console.log(data)
     }
 
     render() {

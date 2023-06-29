@@ -7,11 +7,13 @@ export async function atribuirValorParaDivs() {
     let valores = localStorage.getItem('cards')
 
     if (valores == null) {
+        const json = await requisicao.ObterTotalizador()
+        console.log(json)
         valores = { 
-            vacinados: "300000" ,
-            estabelecimentos: "3.000.000",
-            estrangeiros: "3.000.000",
-            doses: "3.000.000"
+            vacinados: json.quantidadeDePacientesVacinados,
+            estabelecimentos: json.quantidadeDeVacinasAplicadas,
+            estrangeiros: json.quantidadeDeEstrangeiros,
+            doses: json.fabricanteComMaisDosesAplicadas.fabricante
         };
 
         localStorage.setItem('cards', JSON.stringify(valores))

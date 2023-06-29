@@ -15,3 +15,12 @@ export function substituirElemento() {
     elementoExistente.parentNode.replaceChild(container, elementoExistente);
 }
   
+export function substituirCodigo() {
+    var divElementosGraficos = document.getElementsByClassName('elementos-graficos')[0];
+    divElementosGraficos.innerHTML = '<div class="text-center mt-5">' +
+                                     '  <div class="spinner-border" role="status">' +
+                                     '    <span class="sr-only">Carregando...</span>' +
+                                     '  </div>' +
+                                     '</div>';
+}
+  

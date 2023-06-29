@@ -1,13 +1,18 @@
+import { substituirElemento } from './pararcarregamento.js'
+
 export class BarChart {
   constructor(data, containerId) {
     this.data = data;
     this.containerId = containerId;
     this.width = window.innerWidth * 0.75;
     this.height = window.innerHeight * 0.5;
-    this.margin = { top: 20, right: 20, bottom: 30, left: 40 };
+    this.margin = { top: 20, right: 20, bottom: 30, left: 400 };
+
+    console.log(data)
   }
 
   render() {
+    substituirElemento();
     const svg = d3.select(`#${this.containerId}`)
       .append("svg")
       .attr("width", this.width)
@@ -42,6 +47,15 @@ export class BarChart {
       .attr("height", d => chartHeight - yScale(d.value))
       .attr("fill", "steelblue");
 
+    chartGroup.selectAll(".bar-label")
+      .data(this.data)
+      .enter()
+      .append("text")
+      .text(d => d.value) // Use o valor como texto
+      .attr("class", "bar-label")
+      .attr("x", d => xScale(d.label) + xScale.bandwidth() / 2) // Posicione o texto no centro da barra
+      .attr("y", d => yScale(d.value) - 5) // Ajuste a posição vertical
+      .attr("text-anchor", "middle"); // Ali
     chartGroup.append("g")
       .attr("transform", `translate(0, ${chartHeight})`)
       .call(xAxis);
@@ -49,4 +63,5 @@ export class BarChart {
     chartGroup.append("g")
       .call(yAxis);
   }
+
 }

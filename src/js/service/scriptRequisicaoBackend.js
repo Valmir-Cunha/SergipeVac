@@ -42,5 +42,7 @@ export class scriptRequisicaoBackend {
     async ObterContagemPorGrupo() {
         return await this.fetchBack.dataReturn("Relatorio/contagemporgrupo")
     }
-    
+    async ObterTotalizador() {
+        return await this.fetchBack.dataReturn("Relatorio/totalizadores")
+    }
 }

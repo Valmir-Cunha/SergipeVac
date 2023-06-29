@@ -1,101 +1,148 @@
-import { BarChart } from './graficoDebarras.js'
-import { PieChart } from './graficoDeSetores.js'
+import { BarChart } from './graficoDebarras.js';
+import { PieChart } from './graficoDeSetores.js';
+import { scriptRequisicaoBackend } from '../service/scriptRequisicaoBackend.js';
 
-import {scriptRequisicaoBackend} from '../service/scriptRequisicaoBackend.js'
-
-const requisicao = new scriptRequisicaoBackend()
-
-let divTitulo =0;
-
-let json
+import { substituirCodigo } from './pararcarregamento.js';
 
 
-let data
-  
-  
 
-
-for (let i = 1; i < 7; i++) {
-    if (document.getElementById(i.toString())!=null) {
-      divTitulo = i
-      break; 
-    }
+class ChartRenderer {
+  constructor(data, containerId) {
+    this.data = data;
+    this.containerId = containerId;
   }
 
-  switch (divTitulo) {
+  renderBarChart() {
+    const barChart = new BarChart(this.data, this.containerId);
+    barChart.render();
+  }
+
+  renderPieChart() {
+    const pieChart = new PieChart(this.data, this.containerId);
+    pieChart.render();
+  }
+}
+
+async function fetchData(endpoint) {
+  const requisicao = new scriptRequisicaoBackend();
+  const json = await requisicao[endpoint]();
+  return json;
+}
+
+async function renderChart() {
+  const divTituloElements = document.querySelectorAll('.titulo');
+  const divTituloElement = Array.from(divTituloElements).find(element => element !== null);
+  console.log(divTituloElements)
+  
+  if (!divTituloElement) {
+    console.log('Div not found');
+    return;
+  }
+
+  const divTituloId = parseInt(divTituloElement.id);
+
+  let data;
+
+  switch (divTituloId) {
     case 1:
-        json = await requisicao.ObterContagemPorEtnia()
+      {
+        const json = await fetchData('ObterContagemPorEtnia');
         data = json.map(item => ({
           label: item.pacienteRacaCorValor,
           value: item.totalPacientes
         }));
+      }
       break;
     case 2:
-        json = await requisicao.ObterContagemPorEstabelecimento()
+      {
+        const json = await fetchData('ObterContagemPorEstabelecimento');
         data = json.map(item => ({
           label: item.estabelecimento,
           value: item.frequencia
         }));
+      }
       break;
     case 3:
-        json = await requisicao.ObterContagemPorGrupo()
+      {
+        const json = await fetchData('ObterContagemPorGrupo');
         data = json.map(item => ({
           label: item.vacinaGrupoAtendimentoNome,
           value: item.frequencia
         }));
+      }
       break;
     case 4:
-        json = await requisicao.ObterContagemPorEtnia()
+      {
+        const json = await fetchData('ObterContagemPorEtnia');
         data = json.map(item => ({
           label: item.pacienteRacaCorValor,
           value: item.totalPacientes
         }));
-    break;
+      }
+      break;
     case 5:
-        json = await requisicao.ObterContagemPorSexo()
-        data = json.map(item => ({
+      {
+        const json = await fetchData('ObterContagemPorSexo');
+        data = json.value.map(item => ({
           label: item.sexoBiologico,
           value: item.totalPacientes
         }));
-    break;
+      }
+      break;
     case 6:
-        json = await requisicao.ObterContagemPorDose()
+      {
+        const json = await fetchData('ObterContagemPorDose');
         data = json.map(item => ({
           label: item.vacinaDescricaoDose,
           value: item.totalPacientes
         }));
-    break;
+      }
+      break;
     default:
-        json ="0"
-     break;
-}
+      data = [];
+      break;
+  }
 
+  if (data.length === 0) {
+    console.log('Invalid data');
+    return;
+  }
 
+  const chartRenderer = new ChartRenderer(data, 'chart');
 
-const graficobarras = new BarChart(data, "chart")
-const graficosetores = new PieChart(data, "chart")
-
-switch (divTitulo) {
+  switch (divTituloId) {
     case 1:
-      graficobarras.render()
+    case 3:
+    case 4:
+      chartRenderer.renderBarChart();
       break;
     case 2:
-      graficobarras.render()
-      break;
-    case 3:
-        graficobarras.render()
-      break;
-    case 4:
-        graficosetores.render()
-    break;
     case 5:
-        graficosetores.render()
-    break;
     case 6:
-        graficosetores.render()
-    break;
+      chartRenderer.renderPieChart();
+      break;
     default:
-        graficobarras.render()
-     break;
+      chartRenderer.renderBarChart();
+      break;
+  }
 }
+
+renderChart();
+
+// Obtenha uma referência para o botão
+const botaoAplicarFiltro = document.getElementById('aplicar-filtro');
+
+function requisicaoPersonalizada(){
+  substituirCodigo()
   
+  const inputAnoInicial = document.getElementById('data-inicial').value;
+  const inputAnoFinal = document.getElementById('data-final').value;
+  
+  console.log(inputAnoInicial,inputAnoFinal)
+  
+  // renderChart();
+}
+
+// Adicione um ouvinte de evento de clique ao botão
+botaoAplicarFiltro.addEventListener('click', requisicaoPersonalizada);
+
