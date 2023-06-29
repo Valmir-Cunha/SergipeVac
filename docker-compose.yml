@@ -20,7 +20,7 @@ services:
     
   frontend:
     build: 
-      context: ./sergipe_vac
+      context: ./
       dockerfile: Dockerfile
     container_name: frontend-container
     ports:

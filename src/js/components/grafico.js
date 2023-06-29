@@ -1,8 +1,6 @@
 import { BarChart } from './graficoDebarras.js'
 import { PieChart } from './graficoDeSetores.js'
 
-import {atribuirValorParaDivs} from './quantidades.js'
-
 import {scriptRequisicaoBackend} from '../service/scriptRequisicaoBackend.js'
 
 const requisicao = new scriptRequisicaoBackend()
@@ -12,10 +10,7 @@ let divTitulo =0;
 let json
 
 
-const data = json.map(item => ({
-    label: item.pacienteRacaCorValor,
-    value: item.totalPacientes
-  }));
+let data
   
   
 
@@ -30,21 +25,45 @@ for (let i = 1; i < 7; i++) {
   switch (divTitulo) {
     case 1:
         json = await requisicao.ObterContagemPorEtnia()
+        data = json.map(item => ({
+          label: item.pacienteRacaCorValor,
+          value: item.totalPacientes
+        }));
       break;
     case 2:
-        json = await requisicao.ObterContagemPorVacina()
+        json = await requisicao.ObterContagemPorEstabelecimento()
+        data = json.map(item => ({
+          label: item.estabelecimento,
+          value: item.frequencia
+        }));
       break;
     case 3:
         json = await requisicao.ObterContagemPorGrupo()
+        data = json.map(item => ({
+          label: item.vacinaGrupoAtendimentoNome,
+          value: item.frequencia
+        }));
       break;
     case 4:
         json = await requisicao.ObterContagemPorEtnia()
+        data = json.map(item => ({
+          label: item.pacienteRacaCorValor,
+          value: item.totalPacientes
+        }));
     break;
     case 5:
         json = await requisicao.ObterContagemPorSexo()
+        data = json.map(item => ({
+          label: item.sexoBiologico,
+          value: item.totalPacientes
+        }));
     break;
     case 6:
         json = await requisicao.ObterContagemPorDose()
+        data = json.map(item => ({
+          label: item.vacinaDescricaoDose,
+          value: item.totalPacientes
+        }));
     break;
     default:
         json ="0"
@@ -80,41 +99,3 @@ switch (divTitulo) {
      break;
 }
   
-
-
-
-// let json = await requisicao.ObterContagemPorEtnia()
-
-// console.log(json)
-
-// const data = json.map(item => ({
-//     label: item.pacienteRacaCorValor,
-//     value: item.totalPacientes
-//   }));
-  
-  
-
-// if (divTitulo.textContent.includes("racial")) {
-//     graficosetores.render()
-// } else {
-//     graficobarras.render()
-// }
-
-// function somaquantidade(json) {
-    
-//     let soma = json.reduce((accumulator, currentValue) => {
-//         return accumulator + currentValue.totalPacientes;
-//       }, 0);
-    
-//     return soma;
-// }
-
-
-// const valores = {
-//     vacinados: somaquantidade(json),
-//     estabelecimentos: "3.000.000",
-//     estrangeiros: "3.000.000",
-//     doses: "3.000.000"
-// };
-
-// atribuirValorParaDivs(valores)

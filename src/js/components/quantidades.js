@@ -1,11 +1,14 @@
+import {scriptRequisicaoBackend} from '../service/scriptRequisicaoBackend.js'
+
+const requisicao = new scriptRequisicaoBackend()
 
 export async function atribuirValorParaDivs() {
 
     let valores = localStorage.getItem('cards')
 
     if (valores == null) {
-        valores = {
-            vacinados: "3.000.000",
+        valores = { 
+            vacinados: "300000" ,
             estabelecimentos: "3.000.000",
             estrangeiros: "3.000.000",
             doses: "3.000.000"

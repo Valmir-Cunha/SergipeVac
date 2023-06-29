@@ -6,6 +6,7 @@
     <title>Estatísticas</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/estatisticas.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -38,7 +39,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Total de Vacinados</h5>
-                        <p class="card-text" id="vacinados"></p>
+                        <p class="card-text" id="vacinados">carregando...</p>
                     </div>
                 </div>
             </div>
@@ -46,7 +47,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Total de Estabelecimentos</h5>
-                        <p class="card-text" id="estabelecimentos"></p>
+                        <p class="card-text" id="estabelecimentos">carregando...</p>
                     </div>
                 </div>
             </div>
@@ -54,7 +55,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Total de Estrangeiros</h5>
-                        <p class="card-text" id="estrangeiros" ></p>
+                        <p class="card-text" id="estrangeiros" >carregando...</p>
                     </div>
                 </div>
             </div>
@@ -62,7 +63,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Fabricante com mais doses</h5>
-                        <p class="card-text" id="doses"></p>
+                        <p class="card-text" id="doses">carregando...</p>
                     </div>
                 </div>
             </div>
@@ -79,16 +80,16 @@
                 </div>    
             </div>
             <div class="col-md-8">
-                <h5 id="titulo" class="titulo">Quantos vacinados pertencem a cada grupo de atendimento registrado no banco de dados?</h2>
+                <h5 id="3" class="titulo">Quantos vacinados pertencem a cada grupo de atendimento registrado no banco de dados?</h2>
             </div>
         </div>
     </div>
 
-    <div class="elementos-graficos">
-        <div id="grafico">
-            <svg id="chart"></svg>
-        </div>              
-    </div>
+    <div class="text-center mt-5">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Carregando...</span>
+        </div>
+      </div>
 
     <footer>
         <p>&copy; 2023 Erick, Gustavo e Vinicius. Todos os direitos reservados.</p>
@@ -125,7 +126,7 @@
     
     <script type="module"  src="../js/components/grafico.js"></script>
     <script type="module" src="../js/components/quantidades.js"></script>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
