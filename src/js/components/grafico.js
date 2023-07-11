@@ -113,10 +113,10 @@ async function renderChart() {
   switch (divTituloId) {
     case 1:
     case 3:
-    case 4:
       chartRenderer.renderBarChart();
       break;
     case 2:
+    case 4:
     case 5:
     case 6:
       chartRenderer.renderPieChart();
