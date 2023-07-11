@@ -6,7 +6,7 @@ export class BarChart {
     this.containerId = containerId;
     this.width = window.innerWidth * 0.75;
     this.height = window.innerHeight * 0.5;
-    this.margin = { top: 20, right: 20, bottom: 30, left: 400 };
+    this.margin = { top: 0, right: 0, bottom: 20, left: 250 };
 
     console.log(data)
   }
@@ -36,7 +36,7 @@ export class BarChart {
 
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
-
+    
     chartGroup.selectAll("rect")
       .data(this.data)
       .enter()
@@ -45,7 +45,8 @@ export class BarChart {
       .attr("y", d => yScale(d.value))
       .attr("width", xScale.bandwidth())
       .attr("height", d => chartHeight - yScale(d.value))
-      .attr("fill", "steelblue");
+      .attr("fill", "steelblue")
+      .style("fill", "#0b0147");
 
     chartGroup.selectAll(".bar-label")
       .data(this.data)
