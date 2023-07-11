@@ -4,18 +4,17 @@ export class BarChart {
   constructor(data, containerId) {
     this.data = data;
     this.containerId = containerId;
-    this.width = window.innerWidth * 0.6;
+    this.width = window.innerWidth * 0.75;
     this.height = window.innerHeight * 0.5;
-    this.margin = { top: 20, right: 0, bottom: 20, left: 275 };
+    this.margin = { top: 0, right: 0, bottom: 20, left: 250 };
 
     console.log(data)
   }
 
   render() {
     substituirElemento();
-    const chartContainer = d3.select("#myChartContainer");
-
-    const svg = chartContainer.append("svg")
+    const svg = d3.select(`#${this.containerId}`)
+      .append("svg")
       .attr("width", this.width)
       .attr("height", this.height);
 
