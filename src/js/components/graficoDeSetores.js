@@ -62,16 +62,16 @@ export class PieChart {
             .text(d => d.data.label);
             
             // Chart Information
-        const infoContainer = document.getElementById(this.infoContainerId);
-        infoContainer.innerHTML = "";
-
-        this.data.forEach(item => {
-            const infoElement = document.createElement("div");
-            infoElement.innerHTML = `
-                <span style="background-color: ${this.colorScale(this.data.indexOf(item))}; width: 10px; height: 10px; display: inline-block; margin-right: 5px;"></span>
-                <span >${item.label}: <span class="bold-text">${item.value}</span></span>
-
-            `;
-            infoContainer.appendChild(infoElement);
-    }
+            const infoContainer = document.getElementById(this.infoContainerId);
+            infoContainer.innerHTML = "";
+    
+            this.data.forEach(item => {
+                const infoElement = document.createElement("div");
+                infoElement.innerHTML = `
+                    <span style="background-color: ${this.colorScale(this.data.indexOf(item))}; width: 10px; height: 10px; display: inline-block; margin-right: 5px;"></span>
+                    <span >${item.label}: <span class="bold-text">${item.value}</span></span>
+    
+                `;
+                infoContainer.appendChild(infoElement);
+            });
 }
