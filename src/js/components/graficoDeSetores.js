@@ -74,4 +74,6 @@ export class PieChart {
                 `;
                 infoContainer.appendChild(infoElement);
             });
+            
+    }
 }
