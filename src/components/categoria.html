@@ -73,19 +73,19 @@
             <h3 id="4" class="titulo" >Quais são as categorias mais frequentes entre os vacinados?</h2>
         </div>
 
-    <div class="text-center">
-        <div class="spinner-border" role="status">
-          <span class="sr-only">Carregando...</span>
+        <div id="filtro-data" class="filtro-container mb-3">
+            <label for="data-inicial" class="filtro-label">Data Inicial:</label>
+            <input type="date" id="data-inicial" class="filtro-input" min="2000-01-01" max="2023-12-31">
+            <label for="data-final" class="filtro-label">Data Final:</label>
+            <input type="date" id="data-final" class="filtro-input" min="2000-01-01" max="2023-12-31">
+            <button id="aplicar-filtro" class="filtro-button">Aplicar</button>
         </div>
-      </div>
-
-      <div id="filtro-data" class="filtro-container">
-        <label for="data-inicial" class="filtro-label">Data Inicial:</label>
-        <input type="date" id="data-inicial" class="filtro-input" min="2000-01-01" max="2023-12-31">
-        <label for="data-final" class="filtro-label">Data Final:</label>
-        <input type="date" id="data-final" class="filtro-input" min="2000-01-01" max="2023-12-31">
-        <button id="aplicar-filtro" class="filtro-button">Aplicar</button>
-      </div>
+        
+        <div class="chart-container" id="myChartContainer">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Carregando...</span>
+            </div>
+        </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
