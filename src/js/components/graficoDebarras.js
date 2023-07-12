@@ -6,7 +6,7 @@ export class BarChart {
     this.containerId = containerId;
     this.width = window.innerWidth * 0.75;
     this.height = window.innerHeight * 0.5;
-    this.margin = { top: 30, right: 0, bottom: 20, left: 250 };
+    this.margin = { top: 30, right: 0, bottom: 20, left: 300 };
   }
 
   render() {
