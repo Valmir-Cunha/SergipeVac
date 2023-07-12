@@ -129,8 +129,6 @@ async function renderChart(inputAnoInicial=null,inputAnoFinal=null) {
 
 renderChart();
 
-
-// Obtenha uma referência para o botão
 const botaoAplicarFiltro = document.getElementById('aplicar-filtro');
 
 function requisicaoPersonalizada(){
@@ -144,5 +142,4 @@ function requisicaoPersonalizada(){
   renderChart(inputAnoInicial,inputAnoFinal)
 }
 
-// Adicione um ouvinte de evento de clique ao botão
 botaoAplicarFiltro.addEventListener('click', requisicaoPersonalizada);

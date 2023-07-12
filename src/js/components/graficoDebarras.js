@@ -1,4 +1,4 @@
-import { substituirElemento } from './pararcarregamento.js'
+import { substituirElemento } from './pararcarregamento.js';
 
 export class BarChart {
   constructor(data, containerId) {
@@ -6,9 +6,7 @@ export class BarChart {
     this.containerId = containerId;
     this.width = window.innerWidth * 0.75;
     this.height = window.innerHeight * 0.5;
-    this.margin = { top: 0, right: 0, bottom: 20, left: 250 };
-
-    console.log(data)
+    this.margin = { top: 30, right: 0, bottom: 20, left: 250 };
   }
 
   render() {
@@ -33,10 +31,9 @@ export class BarChart {
       .domain([0, d3.max(this.data, d => d.value)])
       .range([chartHeight, 0]);
 
-
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
-    
+
     chartGroup.selectAll("rect")
       .data(this.data)
       .enter()
@@ -45,24 +42,30 @@ export class BarChart {
       .attr("y", d => yScale(d.value))
       .attr("width", xScale.bandwidth())
       .attr("height", d => chartHeight - yScale(d.value))
-      .attr("fill", "steelblue")
-      .style("fill", "#0b0147");
+      .attr("fill", "#0b0147")
+      .style("border-top-left-radius", "4px")
+      .style("border-top-right-radius", "4px");
 
     chartGroup.selectAll(".bar-label")
       .data(this.data)
       .enter()
       .append("text")
-      .text(d => d.value) // Use o valor como texto
+      .text(d => d.value)
       .attr("class", "bar-label")
-      .attr("x", d => xScale(d.label) + xScale.bandwidth() / 2) // Posicione o texto no centro da barra
-      .attr("y", d => yScale(d.value) - 5) // Ajuste a posição vertical
-      .attr("text-anchor", "middle"); // Ali
+      .attr("x", d => xScale(d.label) + xScale.bandwidth() / 2)
+      .attr("y", d => yScale(d.value) - 5)
+      .attr("text-anchor", "middle")
+      .style("font-weight", "bold");
+
     chartGroup.append("g")
       .attr("transform", `translate(0, ${chartHeight})`)
-      .call(xAxis);
+      .call(xAxis)
+      .selectAll("text")
+      .style("font-weight", "bold");
 
     chartGroup.append("g")
-      .call(yAxis);
+      .call(yAxis)
+      .selectAll("text")
+      .style("font-weight", "bold");
   }
-
 }
