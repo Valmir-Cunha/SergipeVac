@@ -91,7 +91,6 @@ export class PieChart {
         return "";
       });
 
-    // Legenda
     const legendOffsetX = -this.width / 2 + 20;
     const legendOffsetY = -this.height / 2 + 20;
 
