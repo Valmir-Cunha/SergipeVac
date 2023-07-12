@@ -1,79 +1,118 @@
-import { substituirElemento } from './pararcarregamento.js'
+import { substituirElemento } from './pararcarregamento.js';
 
 export class PieChart {
-    constructor(data, containerId) {
-        this.data = data;
-        this.containerId = containerId;
-        this.width = window.innerWidth;
-        this.height = window.innerHeight * 0.5;
-        this.radius = Math.min(this.width, this.height) / 2;
-        this.colorScale = d3.scaleOrdinal(d3.schemeCategory10);
-        this.labelOffset = -50; // Ajuste o valor de acordo com a preferência
-        
-        console.log(data)
-    }
+  constructor(data, containerId) {
+    this.data = data;
+    this.containerId = containerId;
+    this.width = window.innerWidth;
+    this.height = window.innerHeight * 0.5;
+    this.radius = Math.min(this.width, this.height) / 2;
+    this.legendWidth = 150;
+    this.legendPadding = 10;
+    this.colorScale = d3.scaleLinear()
+      .domain([0, 9])
+      .range(["#0b0147", "#1f77b4"]);
+  }
 
-    render() {
-        substituirElemento();
-        const svg = d3.select(`#${this.containerId}`)
-            .append("svg")
-            .attr("width", this.width)
-            .attr("height", this.height)
-            .append("g")
-            .attr("transform", `translate(${this.width / 2}, ${this.height / 2})`);
+  render() {
+    substituirElemento();
 
-        const arcGenerator = d3.arc()
-            .innerRadius(0)
-            .outerRadius(this.radius);
+    const marginTop = 30;
 
-        const pie = d3.pie()
-            .value(d => d.value);
+    const svg = d3.select(`#${this.containerId}`)
+      .append("svg")
+      .attr("width", this.width)
+      .attr("height", this.height + marginTop)
+      .append("g")
+      .attr("transform", `translate(${this.width / 2}, ${(this.height / 2) + marginTop})`);
 
-        const slices = svg.selectAll("slice")
-            .data(pie(this.data))
-            .enter()
-            .append("g")
-            .attr("class", "slice");
+    const arcGenerator = d3.arc()
+      .innerRadius(0)
+      .outerRadius(this.radius);
 
-        slices.append("path")
-            .attr("d", arcGenerator)
-            .attr("fill", (d, i) => this.colorScale(i));
+    const pie = d3.pie()
+      .value(d => d.value);
 
-        slices.append("text")
-            .attr("transform", d => {
-                const [x, y] = arcGenerator.centroid(d);
-                const midAngle = Math.atan2(y, x);
-                const xOutside = Math.cos(midAngle) * (this.radius + this.labelOffset);
-                const yOutside = Math.sin(midAngle) * (this.radius + this.labelOffset);
-                return `translate(${xOutside}, ${yOutside})`;
-            })
-            .attr("text-anchor", "middle")
-            .text(d => d.data.value);
+    const slices = svg.selectAll("slice")
+      .data(pie(this.data))
+      .enter()
+      .append("g")
+      .attr("class", "slice");
 
-        slices.append("text")
-            .attr("transform", d => {
-                const [x, y] = arcGenerator.centroid(d);
-                const midAngle = Math.atan2(y, x);
-                const xOutside = Math.cos(midAngle) * (this.radius + this.labelOffset);
-                const yOutside = Math.sin(midAngle) * (this.radius + this.labelOffset);
-                return `translate(${xOutside}, ${yOutside - 20})`; // Ajuste a posição vertical dos rótulos
-            })
-            .attr("text-anchor", "middle")
-            .text(d => d.data.label);
-            
-            // Chart Information
-            const infoContainer = document.getElementById(this.infoContainerId);
-            infoContainer.innerHTML = "";
-    
-            this.data.forEach(item => {
-                const infoElement = document.createElement("div");
-                infoElement.innerHTML = `
-                    <span style="background-color: ${this.colorScale(this.data.indexOf(item))}; width: 10px; height: 10px; display: inline-block; margin-right: 5px;"></span>
-                    <span >${item.label}: <span class="bold-text">${item.value}</span></span>
-    
-                `;
-                infoContainer.appendChild(infoElement);
-            });
-            
-    }
+    slices.append("path")
+      .attr("d", arcGenerator)
+      .attr("fill", (d, i) => this.colorScale(i));
+
+    const labelOffset = 20;
+
+    const labelsOutside = slices.filter(d => {
+      const percent = (d.data.value / d3.sum(this.data, d => d.value)) * 100;
+      return percent < 5;
+    });
+
+    labelsOutside.append("text")
+      .attr("transform", d => {
+        const [x, y] = arcGenerator.centroid(d);
+        const midAngle = Math.atan2(y, x);
+        const xOutside = Math.cos(midAngle) * (this.radius + labelOffset);
+        const yOutside = Math.sin(midAngle) * (this.radius + labelOffset);
+        return `translate(${xOutside}, ${yOutside})`;
+      })
+      .attr("text-anchor", "middle")
+      .attr("font-size", "11px")
+      .style("font-weight", "bold")
+      .style("fill", "black")
+      .attr("dy", "1.5em")
+      .text(d => {
+        const percent = (d.data.value / d3.sum(this.data, d => d.value)) * 100;
+        if (percent < 5) {
+          return `${percent.toFixed(2)}%`;
+        }
+        return null;
+      });
+
+    slices.append("text")
+      .attr("transform", d => {
+        const [x, y] = arcGenerator.centroid(d);
+        const midAngle = Math.atan2(y, x);
+        const xInside = Math.cos(midAngle) * (this.radius / 2);
+        const yInside = Math.sin(midAngle) * (this.radius / 2);
+        return `translate(${xInside}, ${yInside})`;
+      })
+      .attr("text-anchor", "middle")
+      .attr("font-size", "11px")
+      .style("font-weight", "bold")
+      .attr("fill", "white")
+      .text(d => {
+        const percent = (d.data.value / d3.sum(this.data, d => d.value)) * 100;
+        if (percent >= 5) {
+          return `${percent.toFixed(2)}%`;
+        }
+        return "";
+      });
+
+    const legendOffsetX = -this.width / 2 + 20;
+    const legendOffsetY = -this.height / 2 + 20;
+
+    const legend = svg.selectAll(".legend")
+      .data(this.data)
+      .enter()
+      .append("g")
+      .attr("class", "legend")
+      .attr("transform", (d, i) => `translate(${legendOffsetX}, ${i * 20 + legendOffsetY})`);
+
+    legend.append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", 10)
+      .attr("height", 10)
+      .attr("fill", (d, i) => this.colorScale(i));
+
+    legend.append("text")
+      .attr("x", 20)
+      .attr("y", 5)
+      .attr("dy", "0.4em")
+      .style("font-weight", "bold")
+      .text(d => d.label);
+  }
 }
