@@ -11,7 +11,7 @@ export async function atribuirValorParaDivs() {
         console.log(json)
         valores = { 
             vacinados: json.quantidadeDePacientesVacinados,
-            estabelecimentos: json.quantidadeDeVacinasAplicadas,
+            estabelecimentos: json.numEstabelecimentos,
             estrangeiros: json.quantidadeDeEstrangeiros,
             doses: json.fabricanteComMaisDosesAplicadas.fabricante
         };

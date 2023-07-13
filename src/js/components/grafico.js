@@ -23,13 +23,13 @@ class ChartRenderer {
   }
 }
 
-async function fetchData(endpoint) {
+async function fetchData(endpoint,inputAnoInicial=null,inputAnoFinal=null) {
   const requisicao = new scriptRequisicaoBackend();
-  const json = await requisicao[endpoint]();
+  const json = await requisicao[endpoint](inputAnoInicial,inputAnoFinal);
   return json;
 }
 
-async function renderChart() {
+async function renderChart(inputAnoInicial=null,inputAnoFinal=null) {
   const divTituloElements = document.querySelectorAll('.titulo');
   const divTituloElement = Array.from(divTituloElements).find(element => element !== null);
   console.log(divTituloElements)
@@ -46,16 +46,16 @@ async function renderChart() {
   switch (divTituloId) {
     case 1:
       {
-        const json = await fetchData('ObterContagemPorEtnia');
+        const json = await fetchData('ObterContagemPorEtnia',inputAnoInicial,inputAnoFinal);
         data = json.map(item => ({
-          label: item.pacienteRacaCorValor,
-          value: item.totalPacientes
+          label: item.etnia,
+          value: item.quantidadeVacinados
         }));
       }
       break;
     case 2:
       {
-        const json = await fetchData('ObterContagemPorEstabelecimento');
+        const json = await fetchData('ObterContagemPorEstabelecimento',inputAnoInicial,inputAnoFinal);
         data = json.map(item => ({
           label: item.estabelecimento,
           value: item.frequencia
@@ -64,34 +64,35 @@ async function renderChart() {
       break;
     case 3:
       {
-        const json = await fetchData('ObterContagemPorGrupo');
+        const json = await fetchData('ObterContagemPorGrupo',inputAnoInicial,inputAnoFinal);
         data = json.map(item => ({
-          label: item.vacinaGrupoAtendimentoNome,
+          label: item.grupoAtendimento,
           value: item.frequencia
         }));
       }
       break;
     case 4:
       {
-        const json = await fetchData('ObterContagemPorEtnia');
+        const json = await fetchData('ObterContagemPorCategoria',inputAnoInicial,inputAnoFinal);
         data = json.map(item => ({
-          label: item.pacienteRacaCorValor,
-          value: item.totalPacientes
+          label: item.categoria,
+          value: item.frequencia
         }));
       }
       break;
     case 5:
       {
-        const json = await fetchData('ObterContagemPorSexo');
-        data = json.value.map(item => ({
-          label: item.sexoBiologico,
+        const json = await fetchData('ObterContagemPorSexo',inputAnoInicial,inputAnoFinal);
+        console.log(json)
+        data = json.map(item => ({
+          label: item.sexoBiologico.valor,
           value: item.totalPacientes
         }));
       }
       break;
     case 6:
       {
-        const json = await fetchData('ObterContagemPorDose');
+        const json = await fetchData('ObterContagemPorDose',inputAnoInicial,inputAnoFinal);
         data = json.map(item => ({
           label: item.vacinaDescricaoDose,
           value: item.totalPacientes
@@ -112,13 +113,12 @@ async function renderChart() {
 
   switch (divTituloId) {
     case 1:
-    case 4:
     case 5:
     case 6:
-      chartRenderer.renderPieChart();
+      chartRenderer.renderBarChart();
       break;
     default:
-      chartRenderer.renderBarChart();
+      chartRenderer.renderPieChart();
       break;
   }
 }

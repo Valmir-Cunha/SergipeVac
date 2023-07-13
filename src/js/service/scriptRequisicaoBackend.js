@@ -2,47 +2,52 @@ import {fetchFromScratch} from './fetchFromScratch.js'
 
 export class scriptRequisicaoBackend {
     constructor() {
-        this.url = "https://sergipevacbackend-production.up.railway.app"
+        this.url = "https://back.guugascode.site"
         
         this.fetchBack = new fetchFromScratch(this.url)
     }
     
-    async ObterContagemPorEtnia() {
-        return await this.fetchBack.dataReturn("Relatorio/contagemporetnia")
+    async ObterContagemPorEtnia(dataInicial = "", dataFinal = "") {
+        let personalizada = dataFinal == null ? "" : `?dataMin=${dataInicial}&dataMax=${dataFinal}`;
+        return await this.fetchBack.dataReturn("RelatorioRefatorado/contagemporetnia" + personalizada);
     }
-    
-    async ObterContagemPorSexo() {
-        return await this.fetchBack.dataReturn("Relatorio/contagemporsexo")
+
+    async ObterContagemPorSexo(dataInicial = "", dataFinal = "") {
+        let personalizada = dataFinal == null ? "" : `?dataMin=${dataInicial}&dataMax=${dataFinal}`;
+        return await this.fetchBack.dataReturn("RelatorioRefatorado/contagemporsexo" + personalizada);
     }
-        
-    async ObterContagemPorEstabelecimento() {
-        return await this.fetchBack.dataReturn("Relatorio/contagemporestabelecimento")
+
+    async ObterContagemPorEstabelecimento(dataInicial = "", dataFinal = "") {
+        let personalizada = dataFinal == null ? "" : `?dataMin=${dataInicial}&dataMax=${dataFinal}`;
+        return await this.fetchBack.dataReturn("RelatorioRefatorado/contagemporestabelecimento" + personalizada);
     }
-    
-    async ObterContagemPorNacionalidade() {
-        return await this.fetchBack.dataReturn("Relatorio/contagempornacionalidade")
+
+    async ObterContagemPorNacionalidade(dataInicial = "", dataFinal = "") {
+        let personalizada = dataFinal == null ? "" : `?dataMin=${dataInicial}&dataMax=${dataFinal}`;
+        return await this.fetchBack.dataReturn("RelatorioRefatorado/contagempornacionalidade" + personalizada);
     }
-    
-    async ObterContagemPorDose() {
-        return await this.fetchBack.dataReturn("Relatorio/contagempordose")
+
+    async ObterContagemPorDose(dataInicial = "", dataFinal = "") {
+        let personalizada = dataFinal == null ? "" : `?dataMin=${dataInicial}&dataMax=${dataFinal}`;
+        return await this.fetchBack.dataReturn("RelatorioRefatorado/contagempordose" + personalizada);
     }
-    
-    async ObterContagemPorIdade() {
-        return await this.fetchBack.dataReturn("Relatorio/contagemporidade")
+
+    async ObterContagemPorCategoria(dataInicial = "", dataFinal = "") {
+        let personalizada = dataFinal == null ? "" : `?dataMin=${dataInicial}&dataMax=${dataFinal}`;
+        return await this.fetchBack.dataReturn("RelatorioRefatorado/contagemporcategoria" + personalizada);
     }
-    
-    async ObterContagemPorSistema() {
-        return await this.fetchBack.dataReturn("Relatorio/contagemporsistema")
+
+    async ObterContagemPorVacina(dataInicial = "", dataFinal = "") {
+        let personalizada = dataFinal == null ? "" : `?quantidade=5&dataMin=${dataInicial}&dataMax=${dataFinal}`;
+        return await this.fetchBack.dataReturn("RelatorioRefatorado/contagemporvacinas" + personalizada);
     }
-    
-    async ObterContagemPorVacina() {
-        return await this.fetchBack.dataReturn("Relatorio/contagemporvacinas")
+
+    async ObterContagemPorGrupo(dataInicial = "", dataFinal = "") {
+        let personalizada = dataFinal == null ? "" : `?quantidade=5&dataMin=${dataInicial}&dataMax=${dataFinal}`;
+        return await this.fetchBack.dataReturn("RelatorioRefatorado/contagemporgrupo" + personalizada);
     }
-    
-    async ObterContagemPorGrupo() {
-        return await this.fetchBack.dataReturn("Relatorio/contagemporgrupo")
-    }
+
     async ObterTotalizador() {
-        return await this.fetchBack.dataReturn("Relatorio/totalizadores")
+        return await this.fetchBack.dataReturn("RelatorioRefatorado/totalizadores");
     }
 }
