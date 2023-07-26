@@ -2,6 +2,15 @@
 <html>
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z90M60897E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z90M60897E');
+    </script>
     <meta charset="utf-8">
     <title>Estatísticas</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
@@ -20,12 +29,24 @@
                             Quantos vacinados pertencem a cada grupo de atendimento registrado no banco de dados?
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="estatisticas.html" onclick="updateSelectedOption(this)">Quantos vacinados pertencem a cada grupo étnico/racial registrado no banco de dados?</a></li>
-                            <li><a class="dropdown-item" href="estabelecimento.html" onclick="updateSelectedOption(this)">Quais são os estabelecimentos que realizaram a vacinação em Aracaju?</a></li>
-                            <li><a class="dropdown-item active" href="grupo_de_atendimento.html" onclick="updateSelectedOption(this)">Quantos vacinados pertencem a cada grupo de atendimento registrado no banco de dados?</a></li>
-                            <li><a class="dropdown-item" href="categoria.html" onclick="updateSelectedOption(this)">Quais são as categorias mais frequentes entre os vacinados?</a></li>
-                            <li><a class="dropdown-item" href="sexo_biologico.html" onclick="updateSelectedOption(this)">Quais são as quantidades de vacinas que foram aplicadas por sexo biológico?</a></li>
-                            <li><a class="dropdown-item" href="tipo-dose.html" onclick="updateSelectedOption(this)">Quantos vacinados receberam cada tipo de dose da vacina?</a></li>
+                            <li><a class="dropdown-item" href="estatisticas.html"
+                                    onclick="updateSelectedOption(this)">Quantos vacinados pertencem a cada grupo
+                                    étnico/racial registrado no banco de dados?</a></li>
+                            <li><a class="dropdown-item" href="estabelecimento.html"
+                                    onclick="updateSelectedOption(this)">Quais são os estabelecimentos que realizaram a
+                                    vacinação em Aracaju?</a></li>
+                            <li><a class="dropdown-item active" href="grupo_de_atendimento.html"
+                                    onclick="updateSelectedOption(this)">Quantos vacinados pertencem a cada grupo de
+                                    atendimento registrado no banco de dados?</a></li>
+                            <li><a class="dropdown-item" href="categoria.html"
+                                    onclick="updateSelectedOption(this)">Quais são as categorias mais frequentes entre
+                                    os vacinados?</a></li>
+                            <li><a class="dropdown-item" href="sexo_biologico.html"
+                                    onclick="updateSelectedOption(this)">Quais são as quantidades de vacinas que foram
+                                    aplicadas por sexo biológico?</a></li>
+                            <li><a class="dropdown-item" href="tipo-dose.html"
+                                    onclick="updateSelectedOption(this)">Quantos vacinados receberam cada tipo de dose
+                                    da vacina?</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -55,7 +76,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Total de Estrangeiros</h5>
-                        <p class="card-text" id="estrangeiros" >carregando...</p>
+                        <p class="card-text" id="estrangeiros">carregando...</p>
                     </div>
                 </div>
             </div>
@@ -70,9 +91,10 @@
         </div>
 
         <div>
-            <h3 id="3" class="titulo">Quantos vacinados pertencem a cada grupo de atendimento registrado no banco de dados?</h3>
+            <h3 id="3" class="titulo">Quantos vacinados pertencem a cada grupo de atendimento registrado no banco de
+                dados?</h3>
         </div>
-        
+
         <div id="filtro-data" class="filtro-container mb-3">
             <label for="data-inicial" class="filtro-label">Data Inicial:</label>
             <input type="date" id="data-inicial" class="filtro-input" min="2000-01-01" max="2023-12-31">
@@ -85,39 +107,39 @@
             <div class="spinner-border" role="status">
                 <span class="sr-only">Carregando...</span>
             </div>
-    </div>
+        </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script>
-        function updateSelectedOption(element) {
-            const dropdownToggle = document.querySelector('.dropdown-toggle');
-            const selectedOption = element.textContent;
-            dropdownToggle.setAttribute('data-selected-option', selectedOption);
-            dropdownToggle.textContent = selectedOption;
-        }
-    </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script>
+            function updateSelectedOption(element) {
+                const dropdownToggle = document.querySelector('.dropdown-toggle');
+                const selectedOption = element.textContent;
+                dropdownToggle.setAttribute('data-selected-option', selectedOption);
+                dropdownToggle.textContent = selectedOption;
+            }
+        </script>
 
-    <script>
-        const dropdownItems = document.querySelectorAll('.dropdown-item');
+        <script>
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
 
-        dropdownItems.forEach(item => {
-            item.addEventListener('click', function () {
-                dropdownItems.forEach(item => {
-                    item.classList.remove('active');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    dropdownItems.forEach(item => {
+                        item.classList.remove('active');
+                    });
+
+                    this.classList.add('active');
                 });
-
-                this.classList.add('active');
             });
-        });
 
-        
 
-    </script>
-    
-    <script type="module"  src="../js/components/grafico.js"></script>
-    <script type="module" src="../js/components/quantidades.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        </script>
+
+        <script type="module" src="../js/components/grafico.js"></script>
+        <script type="module" src="../js/components/quantidades.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

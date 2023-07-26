@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z90M60897E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z90M60897E');
+    </script>
     <meta charset="utf-8">
     <title>Tela Inicial</title>
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Sergipe VAC</h1>
         <p>Aqui você pode ver as principais estatísticas da vacinação na cidade de Aracaju.</p>
-        <a class="basic-buttom" href="./components/estatisticas.html">Ver Estatísticas</a>
+        <form id="loginForm">
+            <input type="text" id="login" placeholder="login" required><br>
+
+            <input type="password" id="password" placeholder="senha" required><br>
+            <button class="basic-buttom">Ver Estatísticas</button>
+        </form>
     </div>
     <footer>
         <p>&copy; 2023 Erick, Gustavo e Vinicius. Todos os direitos reservados.</p>
     </footer>
     <script type="module" src="./js/components/quantidades.js"></script>
+    <script type="module" src="./js/components/login.js"></script>
+    <script src="./js/components/googleapi.js"></script>
 </body>
+
 </html>

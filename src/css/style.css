@@ -40,3 +40,22 @@ footer{
     padding: 10px;
     text-align: center;
 }
+
+#login, #password {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    margin: 0 auto;
+    font-size: 18px;
+    border: 2px solid #0b0147;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+    border-color: gray;
+  }
+  
+  #login:focus, #password:focus {
+    border-color: black;
+    outline: none;
+    
+  }
+  
