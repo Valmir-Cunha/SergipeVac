@@ -13,7 +13,7 @@ export class Geocodificador {
                 }
             })
             .catch(error => {
-                throw new Error("Erro na requis:", error);
+                throw new Error("Erro :", error);
             });
     }
 }
