@@ -1,6 +1,11 @@
 const width = 800;
 const height = 600;
 
+const dadosCidades = [
+    { cidade: "Aracaju", usuarios: 8 },
+    { cidade: "Nossa Senhora das Dores", usuarios: 10 }
+];
+
 const svg = d3.select("#map")
     .append("svg")
     .attr("width", width)
@@ -13,11 +18,7 @@ const projection = d3.geoMercator()
 
 const path = d3.geoPath().projection(projection);
 
-d3.json("../js/components/geojs-28-mun.json").then(function (geojson) {
-    const dadosCidades = [
-        { cidade: "Aracaju", usuarios: 8 },
-        { cidade: "Nossa Senhora das Dores", usuarios: 10 }
-    ];
+d3.json("../js/archives/geojs-28-mun.json").then(function (geojson) {
 
     const maxUsuarios = d3.max(dadosCidades, d => d.usuarios);
 
@@ -51,3 +52,17 @@ d3.json("../js/components/geojs-28-mun.json").then(function (geojson) {
             tooltip.transition().duration(200).style("opacity", 0);
         });
 });
+
+dadosCidades.sort((a, b) => b.usuarios - a.usuarios);
+
+const g = svg.append("g");
+
+g.selectAll("text")
+    .data(dadosCidades)
+    .enter()
+    .append("text")
+    .attr("x", width - 200)
+    .attr("y", (d, i) => 300 + i * 20)
+    .text((d) => `${d.cidade}: ${d.usuarios} usuários`)
+    .style("fill", "black")
+    .style("font-size", "12px");

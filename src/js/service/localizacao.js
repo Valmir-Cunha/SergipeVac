@@ -1,12 +1,13 @@
 export class Geocodificador {
     async obterCidade(latitude, longitude) {
         const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`;
-
-        return fetch(url)
+        
+        console.log(url)
+        return await fetch(url)
             .then(response => response.json())
             .then(data => {
-                if (data.address && data.address.city) {    
-                    const cidade = data.address.city;
+                if (data.address && data.address.town) {    
+                    const cidade = data.address.town;
                     return cidade;
                 } else {
                     throw new Error("Não foi possível obter o nome da cidade.");
