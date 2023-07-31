@@ -1,6 +1,6 @@
 import { BarChart } from './graficoDebarras.js';
 import { PieChart } from './graficoDeSetores.js';
-import { scriptRequisicaoBackend } from '../service/scriptRequisicaoBackend.js';
+import { scriptRequisicaoBackend } from '../service/scriptRequisicaoBackendRelatorio.js';
 
 import { substituirCodigo } from './pararcarregamento.js';
 

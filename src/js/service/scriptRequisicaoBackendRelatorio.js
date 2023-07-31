@@ -1,6 +1,6 @@
 import {fetchFromScratch} from './fetchFromScratch.js'
 
-export class scriptRequisicaoBackend {
+export class scriptRequisicaoBackendRelatorio {
     constructor() {
         this.url = "https://back.guugascode.site"
         
