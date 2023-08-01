@@ -1,6 +1,6 @@
-import { scriptRequisicaoBackend } from '../service/scriptRequisicaoBackendRelatorio.js';
+import { scriptRequisicaoBackendUsuario  } from "../../service/scriptRequisicaoBackendUsuario.js";
 
-const requisicao = new scriptRequisicaoBackend();
+const requisicaoUsuario = new scriptRequisicaoBackendUsuario()
 
 const redirecionar = () => {
   const login = document.getElementById("username").value;
@@ -9,9 +9,9 @@ const redirecionar = () => {
   console.log("Username:", login);
   console.log("Password:", password);
     
-    if(login == "teste"){
-        window.location.href = './estatisticas.html';
-    }
+  if(login == "teste"){
+    window.location.href = './estatisticas.html';
+}
         
 };
 

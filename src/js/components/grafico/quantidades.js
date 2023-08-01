@@ -1,6 +1,6 @@
-import { scriptRequisicaoBackend } from '../service/scriptRequisicaoBackend.js'
+import { scriptRequisicaoBackendRelatorio } from '../../service/scriptRequisicaoBackendRelatorio.js'
 
-const requisicao = new scriptRequisicaoBackend()
+const requisicao = new scriptRequisicaoBackendRelatorio()
 
 export async function atribuirValorParaDivs() {
 

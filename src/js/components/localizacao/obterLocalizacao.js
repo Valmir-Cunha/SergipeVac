@@ -1,4 +1,4 @@
-import {Geocodificador} from '../service/localizacao.js'
+import {Geocodificador} from '../../service/localizacao.js'
 
 const obterlocalizcao = new Geocodificador()
 

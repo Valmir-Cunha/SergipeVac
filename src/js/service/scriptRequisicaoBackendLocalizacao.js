@@ -1,4 +1,5 @@
-export class scriptRequisicaoBackendRelatorio {
+import {fetchFromScratch} from './fetchFromScratch.js'
+export class scriptRequisicaoBackendLocalizacao{
     constructor() {
         this.url = "https://back.guugascode.site"
         

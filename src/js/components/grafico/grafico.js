@@ -1,6 +1,6 @@
 import { BarChart } from './graficoDebarras.js';
 import { PieChart } from './graficoDeSetores.js';
-import { scriptRequisicaoBackend } from '../service/scriptRequisicaoBackendRelatorio.js';
+import { scriptRequisicaoBackendRelatorio } from '../../service/scriptRequisicaoBackendRelatorio.js';
 
 import { substituirCodigo } from './pararcarregamento.js';
 
@@ -24,7 +24,7 @@ class ChartRenderer {
 }
 
 async function fetchData(endpoint,inputAnoInicial=null,inputAnoFinal=null) {
-  const requisicao = new scriptRequisicaoBackend();
+  const requisicao = new scriptRequisicaoBackendRelatorio();
   const json = await requisicao[endpoint](inputAnoInicial,inputAnoFinal);
   return json;
 }
