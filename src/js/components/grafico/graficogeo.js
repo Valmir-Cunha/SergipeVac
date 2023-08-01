@@ -65,15 +65,15 @@ class MapaCidades {
             .enter()
             .append("text")
             .attr("x", this.width - 200)
-            .attr("y", (d, i) => 300 + i * 20)
+            .attr("y", (d, i) => 200 + i * 20)
             .text((d) => `${d.cidade}: ${d.quantidade} usuários`)
             .style("fill", "black")
-            .style("font-size", "12px");
+            .style("font-size", "19px");
     }
 }
 
 const width = 800;
-const height = 600;
+const height = 500;
 
 const requisicaoLocalizacao = new scriptRequisicaoBackendLocalizacao()
 

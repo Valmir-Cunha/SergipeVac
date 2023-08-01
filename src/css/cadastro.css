@@ -60,3 +60,44 @@ body {
     text-decoration: none;
     font-weight: bold;
   }
+
+  .navbar {
+    background-color: #0b0147 !important;
+    margin-top: 0px !important;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: bold !important;
+    margin-left: 0px !important;
+    font-size: 15px !important;
+}
+
+.navbar-brand:hover {
+    color: white !important;
+}
+
+.navbar .btn-voltar {
+    background-color: transparent !important;
+    color: white !important;
+    border: none !important;
+}
+
+.navbar .btn-voltar:hover {
+    color: #c8d8e3 !important;
+}
+
+.navbar .dropdown-toggle {
+    color: white !important;
+    font-weight: bold !important;
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.navbar .dropdown-toggle:hover {
+    color: white !important;
+}
+
+.dropdown-menu {
+    background-color: #0b0147 !important;
+}
