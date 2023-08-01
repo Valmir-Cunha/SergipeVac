@@ -6,7 +6,6 @@ export class fetchFromScratch {
   async fetchLocal(url, method, body) {
     if (method && body) {
       const json = JSON.stringify(body)
-      console.log(json)
       return fetch(url, {
         method: method,
         headers: {

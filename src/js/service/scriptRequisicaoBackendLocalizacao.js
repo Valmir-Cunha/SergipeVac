@@ -11,5 +11,6 @@ export class scriptRequisicaoBackendLocalizacao{
     }
     
     async obterLocais(){
+        return this.fetchBack.dataReturn("Localizacao/obterlocais")
     }
 } 

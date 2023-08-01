@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Relatório de Localização dos Usuários</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/estatisticas.css">
 </head>
+
 <body>
-    <div id="map"></div>
+    <div class="text-center">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Carregando...</span>
+        </div>
+    </div>
+
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="../js//components/graficogeo.js"></script>
+    <script type="module" src="../js/components/grafico/graficogeo.js"></script>
 </body>
+
 </html>
