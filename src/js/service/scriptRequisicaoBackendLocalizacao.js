@@ -6,7 +6,8 @@ export class scriptRequisicaoBackendLocalizacao{
         this.fetchBack = new fetchFromScratch(this.url)
     }
        
-    async adicionar({estado,cidade}){
+    async adicionar(local){
+        return this.fetchBack.dataReturn("Localizacao/adicionarlocal","POST",local)
     }
     
     async obterLocais(){
