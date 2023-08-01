@@ -5,13 +5,16 @@ export class fetchFromScratch {
 
   async fetchLocal(url, method, body) {
     if (method && body) {
-      console.log(body)
-      return fetch(url,
-        headers= {
-        'Content-Type': 'application/json',
-      },
-        method = method,
-        body = JSON.stringify(body)
+      const json = JSON.stringify(body)
+      console.log(json)
+      return fetch(url, {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json
+      }
+
       )
     }
     else if (method) {
@@ -33,6 +36,7 @@ export class fetchFromScratch {
       if (!response.ok) {
         throw new Error(`Erro na requisição: ${response}`);
       }
+      console.log(response)
       return response.json();
     } catch (error) {
       console.log('Ocorreu um erro na requisição:', error);
