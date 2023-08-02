@@ -1,0 +1,11 @@
+text {
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #000000;
+}
+
+#chart {
+    margin-left: 0%;
+}
