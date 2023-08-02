@@ -9,7 +9,7 @@ class MapaCidades {
         this.geojsonUrl = geojsonUrl;
     }
 
-    renderMapa() {
+    async renderMapa() {
         substituirElemento();
         const svg = d3
             .select("#chart")
@@ -18,7 +18,7 @@ class MapaCidades {
             .attr("height", this.height);
 
         const projection = d3.geoMercator()
-            .center([-37.5, -10.5])
+            .center([-35.5, -10.5])
             .scale(8000)
             .translate([this.width / 2, this.height / 2]);
 
@@ -60,31 +60,55 @@ class MapaCidades {
 
         const g = svg.append("g");
 
-        g.selectAll("text")
-            .data(this.dadosCidades)
-            .enter()
-            .append("text")
-            .attr("x", this.width - 200)
-            .attr("y", (d, i) => 200 + i * 20)
-            .text((d) => `${d.cidade}: ${d.quantidade} usuários`)
-            .style("fill", "black")
-            .style("font-size", "19px");
+      
+    }
+
+    renderTabela() {
+        const tabelaContainer = document.createElement("div");
+        tabelaContainer.innerHTML = `
+        <h2>Tabela de Dados</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Estado</th>
+              <th>Cidade</th>
+              <th>Acesso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- As linhas e células da tabela serão preenchidas pelo JavaScript -->
+          </tbody>
+        </table>
+      `;
+        
+        document.querySelector("#grafico").appendChild(tabelaContainer);
+    
+        const tabelaBody = tabelaContainer.querySelector("tbody");
+        console.log(tabelaBody);
+        this.dadosCidades.forEach((d) => {
+            const linha = document.createElement("tr");
+            linha.innerHTML = `
+          <td>${d.estado}</td>
+          <td>${d.cidade}</td>
+          <td>${d.quantidade}</td>
+        `;
+            tabelaBody.appendChild(linha);
+            tabelaBody.className="col-md-6"
+            
+            const grafico = document.querySelector("#chart")
+            grafico.className="col-md-6"
+        });
     }
 }
 
 const width = 800;
 const height = 500;
 
-const requisicaoLocalizacao = new scriptRequisicaoBackendLocalizacao()
-
-
-const json = await requisicaoLocalizacao.obterLocais()
-
-console.log(json)
-
-const dadosCidades = JSON.parse(JSON.stringify(json))
-
+const requisicaoLocalizacao = new scriptRequisicaoBackendLocalizacao();
+const json = await requisicaoLocalizacao.obterLocais();
+const dadosCidades = JSON.parse(JSON.stringify(json));
 const geojsonUrl = "../js/archives/geojs-28-mun.json";
 
-const mapa = new MapaCidades(width, height, dadosCidades, geojsonUrl);
-mapa.renderMapa();
+const mapa = new MapaCidades(width, height, dadosCidades, geojsonUrl); 
+await mapa.renderMapa();
+mapa.renderTabela();
