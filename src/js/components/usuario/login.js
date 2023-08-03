@@ -12,8 +12,8 @@ const redirecionar = async () => {
   console.log("Password:", password);
     
   if(login == "teste"){
-    await localizador.showPosition()
-    window.location.href = './estatisticas.html';
+    await localizador.getLocation()
+    // window.location.href = './estatisticas.html';
 }
         
 };
