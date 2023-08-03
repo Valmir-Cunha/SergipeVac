@@ -5,7 +5,7 @@ import { Localizador } from "../localizacao/obterLocalizacao.js";
 const requisicaoUsuario = new scriptRequisicaoBackendUsuario()
 const localizador = new Localizador()
 
-const redirecionar = () => {
+const redirecionar = async () => {
   const login = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
@@ -13,7 +13,7 @@ const redirecionar = () => {
   console.log("Password:", password);
     
   if(login == "teste"){
-    localizador.showPosition()
+    await localizador.showPosition()
     window.location.href = './estatisticas.html';
 }
         
