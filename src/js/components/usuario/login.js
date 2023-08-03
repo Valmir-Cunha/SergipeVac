@@ -2,7 +2,6 @@ import { scriptRequisicaoBackendUsuario  } from "../../service/scriptRequisicaoB
 import { Localizador } from "../localizacao/obterLocalizacao.js";
 
 
-const requisicaoUsuario = new scriptRequisicaoBackendUsuario()
 const localizador = new Localizador()
 
 const redirecionar = async () => {
