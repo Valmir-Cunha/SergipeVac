@@ -13,7 +13,7 @@ const redirecionar = async () => {
     
   if(login == "teste"){
     await localizador.getLocation()
-    // window.location.href = './estatisticas.html';
+    window.location.href = './estatisticas.html';
 }
         
 };
