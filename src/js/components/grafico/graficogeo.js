@@ -41,50 +41,50 @@ class MapaCidades {
                 .attr("d", path)
                 .style("fill", (d) => {
                     const cidade = this.dadosCidades.find(c => c.cidade === d.properties.name);
+                    
                     return cidade ? colorScale(cidade.usuarios) : "lightblue";
                 })
                 .style("stroke", "white")
                 .style("stroke-width", 1)
                 .on("mouseover", (event, d) => {
+                    // console.log(event.pageX, event.pageY)
                     tooltip.transition().duration(200).style("opacity", 0.9);
                     tooltip.html(d.properties.name)
                         .style("left", (event.pageX + 10) + "px")
-                        .style("top", (event.pageY - 30) + "px");
+                        .style("top", (event.pageY - 30) + "px")
                 })
                 .on("mouseout", () => {
                     tooltip.transition().duration(200).style("opacity", 0);
-                });
+                }); 
         });
-
-        this.dadosCidades.sort((a, b) => b.quantidade - a.quantidade);
-
-        const g = svg.append("g");
-
-      
     }
 
     renderTabela() {
         const tabelaContainer = document.createElement("div");
+        tabelaContainer.className = "col-md-6"
         tabelaContainer.innerHTML = `
+        <div class ="table-container">
         <h2>Tabela de Dados</h2>
         <table>
           <thead>
             <tr>
               <th>Estado</th>
               <th>Cidade</th>
-              <th>Acesso</th>
+              <th>Acessos</th>
             </tr>
           </thead>
           <tbody>
             <!-- As linhas e células da tabela serão preenchidas pelo JavaScript -->
           </tbody>
         </table>
+        </div>
       `;
         
         document.querySelector("#grafico").appendChild(tabelaContainer);
     
         const tabelaBody = tabelaContainer.querySelector("tbody");
         console.log(tabelaBody);
+        
         this.dadosCidades.forEach((d) => {
             const linha = document.createElement("tr");
             linha.innerHTML = `

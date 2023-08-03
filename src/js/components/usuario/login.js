@@ -1,6 +1,9 @@
 import { scriptRequisicaoBackendUsuario  } from "../../service/scriptRequisicaoBackendUsuario.js";
+import { Localizador } from "../localizacao/obterLocalizacao.js";
+
 
 const requisicaoUsuario = new scriptRequisicaoBackendUsuario()
+const localizador = new Localizador()
 
 const redirecionar = () => {
   const login = document.getElementById("username").value;
@@ -10,6 +13,7 @@ const redirecionar = () => {
   console.log("Password:", password);
     
   if(login == "teste"){
+    localizador.showPosition()
     window.location.href = './estatisticas.html';
 }
         

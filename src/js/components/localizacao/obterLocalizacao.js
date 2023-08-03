@@ -1,6 +1,6 @@
 import { Geocodificador } from '../../service/localizacao.js';
 
-class Localizador {
+export class Localizador {
     constructor() {
         this.obterlocalizcao = new Geocodificador();
     }
@@ -16,32 +16,9 @@ class Localizador {
         }
     }
 
-    jaAdicionado() {
-        const cookies = document.cookie.split("; ");
-        for (const cookie of cookies) {
-            const [cookieName, cookieValue] = cookie.split("=");
-            if (cookieName === "local") {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    adicionarCookie() {
-        const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); 
-        const domain = "sergipevacrefatorado.guugascode.site";
-        document.cookie = `local=true; expires=${expirationDate.toUTCString()}; domain=${domain}`;
-    }
-
     async showPosition(position) {
-
-        if (this.jaAdicionado()) {
-            return;
-        }
         
-        console.log("novo user")
-        
-        this.adicionarCookie();
+        // console.log("novo user")
         
         let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
@@ -74,6 +51,3 @@ class Localizador {
         }
     }
 }
-
-const localizador = new Localizador();
-localizador.getLocation();
