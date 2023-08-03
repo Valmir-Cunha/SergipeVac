@@ -41,7 +41,7 @@ class MapaCidades {
                 .attr("d", path)
                 .style("fill", (d) => {
                     const cidade = this.dadosCidades.find(c => c.cidade === d.properties.name);
-                    
+
                     return cidade ? colorScale(cidade.usuarios) : "lightblue";
                 })
                 .style("stroke", "white")
@@ -55,7 +55,7 @@ class MapaCidades {
                 })
                 .on("mouseout", () => {
                     tooltip.transition().duration(200).style("opacity", 0);
-                }); 
+                });
         });
     }
 
@@ -64,27 +64,26 @@ class MapaCidades {
         tabelaContainer.className = "col-md-6"
         tabelaContainer.innerHTML = `
         <div class ="table-container">
-        <h2>Tabela de Dados</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Estado</th>
-              <th>Cidade</th>
-              <th>Acessos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- As linhas e células da tabela serão preenchidas pelo JavaScript -->
-          </tbody>
-        </table>
+            <h2>Tabela de Dados</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>Cidade</th>
+                            <th>Acessos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
         </div>
       `;
-        
+
         document.querySelector("#grafico").appendChild(tabelaContainer);
-    
+
         const tabelaBody = tabelaContainer.querySelector("tbody");
         console.log(tabelaBody);
-        
+
         this.dadosCidades.forEach((d) => {
             const linha = document.createElement("tr");
             linha.innerHTML = `
@@ -93,10 +92,10 @@ class MapaCidades {
           <td>${d.quantidade}</td>
         `;
             tabelaBody.appendChild(linha);
-            tabelaBody.className="col-md-6"
-            
+            tabelaBody.className = "col-md-6"
+
             const grafico = document.querySelector("#chart")
-            grafico.className="col-md-6"
+            grafico.className = "col-md-6"
         });
     }
 }
@@ -109,6 +108,6 @@ const json = await requisicaoLocalizacao.obterLocais();
 const dadosCidades = JSON.parse(JSON.stringify(json));
 const geojsonUrl = "../js/archives/geojs-28-mun.json";
 
-const mapa = new MapaCidades(width, height, dadosCidades, geojsonUrl); 
+const mapa = new MapaCidades(width, height, dadosCidades, geojsonUrl);
 await mapa.renderMapa();
 mapa.renderTabela();

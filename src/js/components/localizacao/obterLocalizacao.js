@@ -1,8 +1,10 @@
 import { Geocodificador } from '../../service/localizacao.js';
+import { scriptRequisicaoBackendLocalizacao } from '../../service/scriptRequisicaoBackendLocalizacao.js';
 
 export class Localizador {
     constructor() {
         this.obterlocalizcao = new Geocodificador();
+        this.localizacao = new scriptRequisicaoBackendLocalizacao();
     }
 
     getLocation() {
@@ -32,6 +34,8 @@ export class Localizador {
 
         console.log("Latitude: " + latitude + "\nLongitude: " + longitude);
         console.log("Cidade:" + JSON.stringify(local));
+        
+        this.localizacao.adicionar(local);
     }
 
     showError(error) {
