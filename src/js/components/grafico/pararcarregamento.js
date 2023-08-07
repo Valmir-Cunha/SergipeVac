@@ -4,7 +4,8 @@ export function substituirElemento() {
 
     const graficoDiv = document.createElement('div');
     graficoDiv.id = 'grafico';
-    graficoDiv.className ="row align-vertical mb-6";
+    if(document.getElementById("8")!=null)
+        graficoDiv.className ="row align-vertical mb-6";
 
     const svg = document.createElement('svg');
     svg.id = 'chart';
