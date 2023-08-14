@@ -7,23 +7,23 @@ const autenticador = new scriptRequisicaoBackendAutenticacao()
 const redirecionar = async () => {
   const login = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  
+
   const user = {
-    nome:"",
-    email:login,
-    senha:password
+    nome: "",
+    email: login,
+    senha: password
   }
-  
+
   autenticador.login(user)
-    .then(async ()=>{
+    .then(async () => {
       alert("foi não meu parceiro")
     })
     .catch(async () => {
       await localizador.getLocation()
       window.location.href = './estatisticas.html';
     })
-  
-        
+
+
 };
 
 const loginForm = document.getElementById("loginForm");
