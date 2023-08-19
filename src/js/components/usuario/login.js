@@ -17,7 +17,7 @@ const redirecionar = async () => {
 
   autenticador.login(user)
     .then(async (response) => {
-      localizador.getLocation()
+      await localizador.getLocation()
       setTokenCookie(response,8);
       window.location.href = './estatisticas.html'
     })
