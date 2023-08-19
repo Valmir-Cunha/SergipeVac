@@ -8,6 +8,6 @@ export class scriptRequisicaoBackendAutenticacao{
     }
        
     async login(user){
-        return this.fetchBack.dataReturn("Autenticacao/login","POST",user)
+        return this.fetchBack.dataReturnToken("Autenticacao/login","POST",user)
     }
 } 

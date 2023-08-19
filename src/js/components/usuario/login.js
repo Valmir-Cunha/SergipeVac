@@ -1,5 +1,6 @@
 import { Localizador } from "../localizacao/obterLocalizacao.js";
 import { scriptRequisicaoBackendAutenticacao } from "../../service/scriptRequisicaoBackendAutenticacao.js";
+import { setTokenCookie } from "../auth/tokenCookie.js";
 
 const localizador = new Localizador()
 const autenticador = new scriptRequisicaoBackendAutenticacao()
@@ -15,12 +16,13 @@ const redirecionar = async () => {
   }
 
   autenticador.login(user)
-    .then(async () => {
-      alert("foi não meu parceiro")
+    .then(async (response) => {
+      localizador.getLocation()
+      setTokenCookie(response,8);
+      window.location.href = './estatisticas.html'
     })
     .catch(async () => {
-      await localizador.getLocation()
-      window.location.href = './estatisticas.html';
+      alert("foi não meu parceiro");
     })
 
 
