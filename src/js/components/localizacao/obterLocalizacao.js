@@ -7,21 +7,33 @@ export class Localizador {
         this.localizacao = new scriptRequisicaoBackendLocalizacao();
     }
 
-    getLocation() {
+    async getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                this.showPosition.bind(this),
-                this.showError.bind(this)
-            );
+            try {
+                await new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(
+                        position => {
+                            this.showPosition(position)
+                                .then(resolve) // Resolve a promessa externa quando a inserção é bem-sucedida
+                                .catch(reject);
+                        },
+                        error => {
+                            this.showError(error);
+                            reject(error);
+                        }
+                    );
+                });
+            } catch (error) {
+                console.error(error);
+            }
         } else {
             console.log("Geolocalização não é suportada neste navegador.");
         }
     }
-
+    
     async showPosition(position) {
-        
-        // console.log("novo user")
-        
+
+
         let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
 
@@ -34,8 +46,8 @@ export class Localizador {
 
         console.log("Latitude: " + latitude + "\nLongitude: " + longitude);
         console.log("Cidade:" + JSON.stringify(local));
-        
-        this.localizacao.adicionar(local);
+
+        return this.localizacao.adicionar(local);
     }
 
     showError(error) {

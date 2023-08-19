@@ -1,9 +1,31 @@
 import { Localizador } from "../localizacao/obterLocalizacao.js";
 import { scriptRequisicaoBackendAutenticacao } from "../../service/scriptRequisicaoBackendAutenticacao.js";
-import { setTokenCookie } from "../auth/tokenCookie.js";
+import { setTokenCookie, getTokenFromCookie } from "../auth/tokenCookie.js";
 
-const localizador = new Localizador()
 const autenticador = new scriptRequisicaoBackendAutenticacao()
+
+function mostrarCarregamento() {
+  const loginForm = document.getElementById("loginForm");
+  const loadingText = document.createElement("div");
+  loadingText.textContent = "Carregando...";
+  loadingText.classList.add("loading-text");
+
+  loginForm.style.display = "none";
+  loginForm.parentNode.insertBefore(loadingText, loginForm.nextSibling);
+}
+
+const mudarDePagina = async () => {
+  try {
+    const localizador = new Localizador();
+    mostrarCarregamento();
+    await localizador.getLocation();
+
+    window.location.href = './estatisticas.html';
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
 const redirecionar = async () => {
   const login = document.getElementById("username").value;
@@ -17,9 +39,8 @@ const redirecionar = async () => {
 
   autenticador.login(user)
     .then(async (response) => {
-      await localizador.getLocation()
-      setTokenCookie(response,8);
-      window.location.href = './estatisticas.html'
+      setTokenCookie(response, 8);
+      await mudarDePagina()
     })
     .catch(async () => {
       alert("foi não meu parceiro");
@@ -28,9 +49,14 @@ const redirecionar = async () => {
 
 };
 
-const loginForm = document.getElementById("loginForm");
+if (getTokenFromCookie() == null) {
+  const loginForm = document.getElementById("loginForm");
 
-loginForm.addEventListener('submit', (event) => {
-  event.preventDefault()
-  redirecionar();
-});
+  loginForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    redirecionar();
+  });
+
+}else {
+  await mudarDePagina()
+}
