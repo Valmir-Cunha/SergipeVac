@@ -10,7 +10,17 @@ const cadastro= async () => {
         senha: document.getElementById("password").value
     }
     
-    alert(await requisicaoUsuario.cadastrar(user))
+    requisicaoUsuario.cadastrar(user)
+    .then(() => {
+        alert("erro no cadastramento");
+    })
+    .catch((err) => {
+        alert("cadastrado com sucesso");
+        window.location.href = './login.html';
+    });
+
+    
+    // 
     
 }
 

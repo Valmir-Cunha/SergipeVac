@@ -39,8 +39,12 @@ const redirecionar = async () => {
 
   autenticador.login(user)
     .then(async (response) => {
-      setTokenCookie(response, 8);
+      if(response!=undefined){
+        setTokenCookie(response, 8);
       await mudarDePagina()
+      }else {
+        alert("Usuario ou senha incorretas");
+      }
     })
     .catch(async () => {
       alert("foi não meu parceiro");
