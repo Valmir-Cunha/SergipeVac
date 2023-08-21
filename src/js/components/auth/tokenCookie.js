@@ -1,5 +1,5 @@
-function setTokenCookie(token, expirationHours) {
-  const cookieName = 'token';
+function setTokenCookie(cookieName,token, expirationHours) {
+
   const expirationDate = new Date();
   expirationDate.setTime(expirationDate.getTime() + expirationHours * 60 * 60 * 1000);
 
@@ -7,8 +7,8 @@ function setTokenCookie(token, expirationHours) {
   document.cookie = `${cookieName}=${cookieValue}`;
 }
 
-function getTokenFromCookie() {
-  const cookieName = 'token';
+function getTokenFromCookie(cookieName) {
+
   const cookies = document.cookie.split(';');
   for (let cookie of cookies) {
     cookie = cookie.trim();

@@ -40,7 +40,8 @@ const redirecionar = async () => {
   autenticador.login(user)
     .then(async (response) => {
       if(response!=undefined){
-        setTokenCookie(response, 8);
+        setTokenCookie('token',response, 8);
+        setTokenCookie('name',login,8)
       await mudarDePagina()
       }else {
         alert("Usuario ou senha incorretas");
@@ -53,7 +54,7 @@ const redirecionar = async () => {
 
 };
 
-if (getTokenFromCookie() == null) {
+if (getTokenFromCookie('token') == null) {
   const loginForm = document.getElementById("loginForm");
 
   loginForm.addEventListener('submit', (event) => {

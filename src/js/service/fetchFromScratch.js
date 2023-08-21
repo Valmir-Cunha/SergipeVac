@@ -7,7 +7,7 @@ export class fetchFromScratch {
 
   async fetchLocal(url, method, body) {
     const headers = {
-      'Authorization': `Bearer ${getTokenFromCookie()}`
+      'Authorization': `Bearer ${getTokenFromCookie('token')}`
     };
   
     if (method && body) {
@@ -47,7 +47,7 @@ export class fetchFromScratch {
     }
   }
   
-  async dataReturnToken(route, method = null, body = null) {
+  async dataReturnToken(route, method = 'GET', body = null) {
     const fullUrl = `${this.url}/api/${route}`;
     console.log(fullUrl);
 

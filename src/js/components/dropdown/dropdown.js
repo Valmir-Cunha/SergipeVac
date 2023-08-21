@@ -1,13 +1,30 @@
 import { scriptRequisicaoBackendUsuario } from "../../service/scriptRequisicaoBackendUsuario.js";
 import { scriptRequisicaoBackendSincronizacao } from "../../service/scriptRequisicaoBackendSincronizacao.js";
+import { getTokenFromCookie } from "../auth/tokenCookie.js";
+
+const obterUser = async () => {
+  const email = getTokenFromCookie('name')
+  let requisicaoUsuario = new scriptRequisicaoBackendUsuario();
+  const obtertodos = await requisicaoUsuario.obterTodos();
+
+
+  let userencontrado = null;  
+  obtertodos.forEach(user => {
+  
+    if(user.email == email){
+      userencontrado = user;
+    }
+  });
+  return userencontrado;
+}
 
 const carregamentoDeDados = async () => {
   let requisicaoSincronizacao = new scriptRequisicaoBackendSincronizacao();
-  let requisicaoUsuario = new scriptRequisicaoBackendUsuario();
-
-  let user = await requisicaoUsuario.obter(4);
-  let atualizacaoBancoDedados = await requisicaoSincronizacao.obterUltima();
   
+
+  let user = await obterUser();
+  console.log(user)
+  let atualizacaoBancoDedados = await requisicaoSincronizacao.obterUltima();
   let divbanco= [];
   if(atualizacaoBancoDedados[0].bemSucedida == true){
     divbanco = [
@@ -21,7 +38,6 @@ const carregamentoDeDados = async () => {
       `<li><a class="dropdown-item text-success " href="#"><span class="text-success"><i class="fas fa-check"></i><small><i> Última Atualização: ${novaRequisicao[0].ultimaSincronizacao}</i></small></span></a></li>`      
     ]
   }
-  // console.log(divbanco);
   var carregandoElement = document.getElementById("carregando");
     
     carregandoElement.parentNode.removeChild(carregandoElement);
