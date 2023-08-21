@@ -52,7 +52,7 @@ export class fetchFromScratch {
     console.log(fullUrl);
 
     try {
-      const response = await this.fetchLocal(fullUrl, method, body)
+      const response = await this.fetchLocal(fullUrl, method=null, body=null)
       if (!response.ok) {
         throw new Error(`Erro na requisição: ${response}`);
       }

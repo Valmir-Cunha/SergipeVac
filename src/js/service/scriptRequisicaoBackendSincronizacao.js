@@ -8,10 +8,10 @@ export class scriptRequisicaoBackendSincronizacao{
     }
        
     async obterUltima(){
-        return this.fetchBack.dataReturnToken("Sincronizacao/obterUltimaSincronizacao")
+        return this.fetchBack.dataReturn("Sincronizacao/obterUltimaSincronizacao")
     }
     
     async obterUltimaBemSucedida() {
-        return this.fetchBack.dataReturnToken("Sincronizacao/obterUltimaSincronizacaoBemSucedida")
+        return this.fetchBack.dataReturn("Sincronizacao/obterUltimaSincronizacaoBemSucedida")
     }
 } 
