@@ -19,4 +19,11 @@ function getTokenFromCookie(cookieName) {
   return null;
 }
 
-export { setTokenCookie, getTokenFromCookie };
+function clearTokens() {
+  const cookiesParaExcluir = ["name", "token"];
+    cookiesParaExcluir.forEach(nome => {
+        document.cookie = `${nome}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    });
+}
+
+export { setTokenCookie, getTokenFromCookie, clearTokens};

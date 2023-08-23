@@ -2,6 +2,16 @@ import { scriptRequisicaoBackendUsuario } from "../../service/scriptRequisicaoBa
 import { scriptRequisicaoBackendSincronizacao } from "../../service/scriptRequisicaoBackendSincronizacao.js";
 import { getTokenFromCookie } from "../auth/tokenCookie.js";
 
+const options = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  timeZoneName: 'short'
+};
+
 const obterUser = async () => {
   const email = getTokenFromCookie('name')
   let requisicaoUsuario = new scriptRequisicaoBackendUsuario();
@@ -27,15 +37,17 @@ const carregamentoDeDados = async () => {
   let atualizacaoBancoDedados = await requisicaoSincronizacao.obterUltima();
   let divbanco= [];
   if(atualizacaoBancoDedados[0].bemSucedida == true){
+    const data = new Date(atualizacaoBancoDedados[0].ultimaSincronizacao);
     divbanco = [
       '<li><a class="dropdown-item text-success " href="#"><span class="text-success"><i class="fas fa-check"></i><strong> Banco Atualizado</strong></span></a></li>',
-      `<li><a class="dropdown-item text-success" href="#"><span class="text-success"><i class="fas fa-check"></i><small><i> Última Atualização: ${atualizacaoBancoDedados[0].ultimaSincronizacao}</i></small></span></a></li>`      
+      `<li><a class="dropdown-item text-success" href="#"><span class="text-success"><i class="fas fa-check"></i><small><i> Última Atualização: ${data.toLocaleDateString('pt-BR',options)}</i></small></span></a></li>`      
     ]
   }else {
-    let novaRequisicao = await requisicaoSincronizacao.obterUltimaBemSucedida()
+    let novaRequisicao = await requisicaoSincronizacao.obterUltimaBemSucedida();
+    const data = new Date(novaRequisicao[0].ultimaSincronizacao);
     divbanco = [
       '<li><a class="dropdown-item text-danger" href="#"><span class="text-danger"><i class="fas fa-check"></i><strong> Banco Desatualizado</strong></span></a></li>',
-      `<li><a class="dropdown-item text-success " href="#"><span class="text-success"><i class="fas fa-check"></i><small><i> Última Atualização: ${novaRequisicao[0].ultimaSincronizacao}</i></small></span></a></li>`      
+      `<li><a class="dropdown-item text-success " href="#"><span class="text-success"><i class="fas fa-check"></i><small><i> Última Atualização: ${data.toLocaleDateString('pt-BR',options)}</i></small></span></a></li>`      
     ]
   }
   var carregandoElement = document.getElementById("carregando");

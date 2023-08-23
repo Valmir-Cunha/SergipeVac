@@ -4,23 +4,25 @@ export class BarChart {
   constructor(data, containerId) {
     this.data = data;
     this.containerId = containerId;
-    this.width = window.innerWidth * 0.75;
-    this.height = window.innerHeight * 0.5;
-    this.margin = { top: 30, right: 0, bottom: 20, left: 300 };
+    this.width = 1000;
+    this.height = 450;
+    this.margin = { top: 30, right: 0, bottom: 20, left: 200 };
   }
 
   render() {
     substituirElemento();
+  
     const svg = d3.select(`#${this.containerId}`)
       .append("svg")
       .attr("width", this.width)
-      .attr("height", this.height);
+      .attr("height", this.height)
+      .append("g")
+      .attr("transform", `translate(${this.margin.left}, ${this.margin.top})`);
 
     const chartWidth = this.width - this.margin.left - this.margin.right;
     const chartHeight = this.height - this.margin.top - this.margin.bottom;
 
-    const chartGroup = svg.append("g")
-      .attr("transform", `translate(${this.margin.left}, ${this.margin.top})`);
+    const chartGroup = svg.append("g");
 
     const xScale = d3.scaleBand()
       .domain(this.data.map(d => d.label))
