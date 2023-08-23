@@ -4,7 +4,7 @@ const button = document.getElementById("logoff")
 
 button.addEventListener("click",() => {
 
-    //clearTokens();
+    clearTokens();
 
     window.location.href = '/';
 
