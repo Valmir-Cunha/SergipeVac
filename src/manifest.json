@@ -1,16 +1,16 @@
 {
-    "background_color": "#ffffff",
-    "description": "Site que informa dados de vacinação da cidade de aracaju.",
-    "dir": "ltr",
-    "display": "standalone",
-    "name": "AracajuVac",
-    "orientation": "any",
-    "scope": "/",
-    "short_name": "AracajuVac",
-    "start_url": "/",
-    "theme_color": "#ffffff",
-    "categories": [],
-    "screenshots": [],
-    "icons": [],
-    "shortcuts": []
-  }
+  "background_color": "#ffffff",
+  "description": "Site que informa dados de vacinação da cidade de aracaju.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "AracajuVac",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "AracajuVac",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [],
+  "screenshots": [],
+  "icons": [],
+  "shortcuts": []
+}
