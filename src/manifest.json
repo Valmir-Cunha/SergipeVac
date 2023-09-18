@@ -11,6 +11,12 @@
   "theme_color": "#ffffff",
   "categories": [],
   "screenshots": [],
-  "icons": [],
+  "icons": [
+    {
+      "src": "./AppImages/windows11/Square150x150Logo.scale-125.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    }
+  ],
   "shortcuts": []
 }
