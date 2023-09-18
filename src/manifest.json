@@ -16,6 +16,11 @@
       "src": "./AppImages/windows11/Square150x150Logo.scale-125.png",
       "sizes": "150x150",
       "type": "image/png"
+    },
+    {
+      "src": "./AppImages/windows11/Wide310x150Logo.scale-400.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
   "shortcuts": []
