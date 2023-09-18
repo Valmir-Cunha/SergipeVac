@@ -29,6 +29,11 @@
     <footer>
         <p>&copy; 2023 Erick, Gustavo e Vinicius. Todos os direitos reservados.</p>
     </footer>
+    <script>
+        if (typeof navigator.serviceWorker !== 'undefined') {
+            navigator.serviceWorker.register('pwabuilder-sw.js')
+        }
+    </script>
 </body>
 
 </html>
