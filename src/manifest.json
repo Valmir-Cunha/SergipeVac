@@ -9,7 +9,11 @@
   "short_name": "AracajuVac",
   "start_url": "/",
   "theme_color": "#ffffff",
-  "categories": [],
+  "categories": [
+    "education",
+    "government",
+    "health"
+  ],
   "screenshots": [],
   "icons": [
     {
